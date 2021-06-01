@@ -3,7 +3,8 @@ import typer
 from commitcanvas_models.train_model import model as md
 # from commitcanvas_models.train_model.tokenizers import dummy
 # from commitcanvas_models.train_model.tokenizers import stem_tokenizer
-from commitcanvas_models.data_handling import process
+from commitcanvas_models.train_model import process
+from sklearn.model_selection import train_test_split
 import pandas as pd
 import joblib
 import glob
@@ -27,16 +28,13 @@ def train(data: str, save: str):
     """
  
     raw_data = pd.concat(map(pd.read_feather, glob.glob('{}/*.ftr'.format(data))))
-   
-    data_processing = process.process(raw_data)
-    features = data_processing.get_features()
-    labels = data_processing.get_labels()
+    processed_data = process.data_prep(raw_data)
+    features,labels = process.feature_label_split(processed_data)
 
-    train_model = md.model_helpers(features,labels)
-    pipeline = train_model.train()
-    print("training complete")
+    pipeline = md.build_pipline()
+    pipeline.fit(features,labels)
 
-    train_model.save(pipeline,save)
+    md.save(pipeline,save)
 
 @app.command()
 def test(data: str = None, model: str = None):
@@ -47,21 +45,26 @@ def test(data: str = None, model: str = None):
     repos = os.listdir(data)
 
     for repo_name in repos:
+
         raw_data = pd.read_feather("{}/{}".format(data,repo_name))
-        data_processing = process.process(raw_data)
+        processed_data = process.data_prep(raw_data)
+
         if model:
-            features = data_processing.get_features()
-            labels = data_processing.get_labels()
-
+            test_features,test_labels = process.feature_label_split(processed_data)
             pipeline = joblib.load(model)   
-            predicted = pipeline.predict(features)
-        # else:
-        #     test,train = repo
-        #     model.train(train)
-        #     model.test(test)
+            predicted = pipeline.predict(test_features)
+        else:
+            train_features,train_labels,test_features,test_labels = process.train_test_split(processed_data)
+            pipeline = md.build_pipline()
+            pipeline.fit(train_features,train_labels)
+            predicted = pipeline.predict(test_features)
 
-        train_model = md.model_helpers(features,labels)
-        train_model.report(pipeline,predicted)
+        md.report(test_labels,predicted)
+            
+        
+        
+
+
 
 
 

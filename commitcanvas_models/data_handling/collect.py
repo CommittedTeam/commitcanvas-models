@@ -4,7 +4,8 @@ from reporover import reporover
 
 
 
-
+  plot_confusion_matrix(labels,predicted, display_labels=types,cmap='Blues',normalize="true")
+  plt.show()  
 
 
 # list_ = pd.read_csv("data/new_repos.csv")
