@@ -50,6 +50,7 @@ def report(labels,predicted):
   classification_report(labels, predicted, target_names=types, zero_division=0)
   )  
 
+
 def save(pipeline,path):
 
   print("saving the model")
