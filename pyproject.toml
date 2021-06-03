@@ -16,7 +16,7 @@ nltk = "^3.6.2"
 pytest = "^5.2"
 
 [tool.poetry.scripts]
-model = "commitcanvas_models.classify:app"
+commitcanvas = "commitcanvas_models.commitcanvas:app"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
