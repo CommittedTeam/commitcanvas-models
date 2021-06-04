@@ -1,7 +1,6 @@
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline
-from sklearn.metrics import classification_report
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import plot_confusion_matrix
@@ -10,6 +9,7 @@ from commitcanvas_models.train_model.tokenizers import stem_tokenizer
 from commitcanvas_models.train_model.tokenizers import dummy
 from sklearn.metrics import get_scorer
 import joblib
+import pandas as pd
 
 
 def build_pipline():
@@ -32,22 +32,24 @@ def build_pipline():
 
   # set remainder as passthrough so that the other columns don't get lost
   col_transform = ColumnTransformer(transformers=t,remainder="passthrough")
-  model = RandomForestClassifier(random_state=42,n_jobs=-1)
+  model = RandomForestClassifier(random_state=42)
 
   # set up the pipeline with transformer and model
   pipeline = Pipeline(steps=[('prep',col_transform), ('model', model)])
 
   return pipeline
 
-def data_prep(data):
-  types = ["feat","chore","docs","refactor","test","fix"]
-  data = data[data["commit_type"].isin(types)]
+def data_prep(data,labels):
+
+  labels = labels.split(",")
+  data = data[data["commit_type"].isin(labels)]
   # drop commits made by the bots
   data = data[data["isbot"] != True]
   # drop duplicate commits if any
   data = data.drop_duplicates("commit_hash")
   # drop nan rows with nan values
   data = data.dropna()
+
   return data
 
 def feature_label_split(data):
@@ -61,11 +63,13 @@ def cross_val_split(data,project):
 
   train = data[data.name != project]
   test = data[data.name == project]
-  
+  print(train)
+  print(test)
   train_features,train_labels = feature_label_split(train)
   test_features,test_labels = feature_label_split(test)
 
   return (train_features,train_labels,test_features,test_labels)
+
 
 def train_test_split(data,project,size):
   
@@ -73,23 +77,51 @@ def train_test_split(data,project,size):
   length = len(data)
 
   test_count = int(round(((length*size)/100),0))
-  train,test =  data.head(length-test_count), data.tail(test_count)
- 
+  # newest commits are at the top of the dataframe
+  train,test =  data.tail(length-test_count), data.head(test_count)
+  print(train)
+  print(test)
   train_features,train_labels = feature_label_split(train)
   test_features,test_labels = feature_label_split(test)
 
   return (train_features,train_labels,test_features,test_labels)
 
-def report(true,predicted,scorers):
+def report(data,cross,project,split):
+  
+  classification_scores = {}
+  projects = data.name.unique()
+  
+  for repo in projects:
+      
+      if cross:
 
-  scores = [get_scorer(score)._score_func(true, predicted,average="weighted",zero_division=0) for score in scorers]
+        # Train test split for cross project validation
+        train_features,train_labels,test_features,test_labels = cross_val_split(data,repo)
+        save_fig = "cross"
+      elif project:
 
-  return scores
+        # Train test split for one project
+        train_features,train_labels,test_features,test_labels = train_test_split(data,repo,split)
+        save_fig = "project"
+
+      pipeline = build_pipline()
+      pipeline.fit(train_features,train_labels)
+      predicted = pipeline.predict(test_features)
+      scorers = ['precision','recall','f1']
+      score = [get_scorer(score)._score_func(test_labels, predicted,average="weighted",zero_division=0) for score in scorers]
+
+      print(score)
+      classification_scores.update({repo:score})
+
+      plot_confusion_matrix(pipeline, test_features, test_labels, cmap='Blues',normalize="true")
+      plt.savefig("classification_reports/{}/matrices/{}.jpg".format(save_fig,repo))
+  
+  scores = pd.DataFrame.from_dict(classification_scores, orient='index',columns=scorers)
+  scores.to_csv("classification_reports/{}/classification_report.csv".format(save_fig))
 
 def save(pipeline,path):
 
   print("saving the model")
   joblib.dump(pipeline, "{}/trained_model.pkl".format(path))
   print("saving model complete")
-
 
