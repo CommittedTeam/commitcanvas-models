@@ -1,0 +1,31 @@
+Model cross-project validated
+
+Selected labels:  fix,feat,chore,docs,refactor,test
+Minimum amount of commits required per label:  50
+
+Total number of subset repositories 62
+0           gatsby
+1       ant-design
+2          angular
+3         electron
+9      angular-cli
+          ...     
+236    serenity-js
+257      webiny-js
+272          lerna
+281    pact_broker
+292        stryker
+Name: name, Length: 62, dtype: object
+
+Count of programming languages
+TypeScript     26
+JavaScript     22
+Java            3
+Go              3
+Python          2
+Ruby            1
+Rust            1
+Starlark        1
+Vue             1
+C++             1
+Objective-C     1
