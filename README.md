@@ -11,9 +11,9 @@
 
    - `save_report` path to save the report
 
-   - `split` option takes the ratio. This ratio will be used a size of the test set for the `project` mode. By default the value os `split` is 0.25. This means that if one project has 800 commits then top(chronologically newest) 200 will be set aside for testing, and the rest 600 will be used for training.
+   - `split` option takes the ratio. This ratio will be used as a size of the test set for the `project` mode. By default the value of `split` is 0.25. This means that if one project has 800 commits then top(chronologically newest) 200 will be set aside for testing, and the rest 600 will be used for training.
 
-
+sample command: `commitcanvas train project data/classification_reports/project/split_90_10.csv --split 0.10`
 
 ## Data Overview
 
