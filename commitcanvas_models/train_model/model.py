@@ -64,12 +64,10 @@ def cross_val_split(data,project):
 
 
 def train_test_split(data,size):
-  
   length = len(data)
   test_count = int(round((length*size),0))
   # newest commits are at the top of the dataframe
   train,test =  data.tail(length-test_count), data.head(test_count)
-
   return (train,test)
 
 def save(pipeline,path):
@@ -92,12 +90,14 @@ def save(test,predicted,path):
   else: # otherwise append without writing the header
     true_pred.to_csv(path, mode='a', header=False, index=False)
 
+from sklearn.metrics import f1_score
+
 def report(data,mode,split,path):
   
   projects = data.name.unique()
   
   for repo in projects:
-      
+      print(repo)
       if mode == 'cross_project':
 
         # Train test split for cross project validation
@@ -110,19 +110,11 @@ def report(data,mode,split,path):
         project_data = data[data.name == repo]
         # Train test split for one project
         train,test = train_test_split(project_data,split)
-      
         train_features,train_labels = feature_label_split(train)
         test_features,test_labels = feature_label_split(test)
 
 
       pipeline = build_pipline()
       pipeline.fit(train_features,train_labels)
-      predicted = pipeline.predict(test_features)
-      print(repo) 
+      predicted = pipeline.predict(test_features) 
       save(test,predicted,path)
-
-
-
-
-      # print(repo)
-      # print(precision_score(test_labels, predicted, average='weighted'))

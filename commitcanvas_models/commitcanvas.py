@@ -17,11 +17,12 @@ def callback():
 @app.command()
 def select(labels: str = "fix,feat,chore,docs,refactor,test", min_label: int = 50, subset: bool = False, subset_size: float = 0.50):
     """Select and save repositories for training"""
+    # TODO counting the commits per label needs to be refactored
     data = pd.read_feather("data/training_data/angular_data.ftr")
-    
+    print(data)
     # select repositories that use the given labels and have at least given amount of commits per label
     filtered = selection.filter_projects_by_label(data,labels,min_label)
-
+    print(filtered)
     if subset:
         selected_set = selection.select_projects_subset(filtered,subset_size)
     else:
@@ -52,13 +53,16 @@ def train(mode: str,  save_report: str, split: float = 0.25):
 
     data = pd.read_csv("data/training_data/training_repos.csv",index_col=0)
 
-    collected_data = pd.read_feather("data/training_data/angular_data.ftr")
+    # use processed data
+    collected_data = pd.read_feather("data/training_data/processed_angular_data.ftr")
 
     filtered_data = collected_data[collected_data['name'].isin(data.name.tolist())]
     print(data)
+
     # pre_process the data before training
-    labels = "fix,feat,chore,docs,refactor,test"
-    filtered_data = md.data_prep(filtered_data,labels)
+    # labels = "fix,feat,chore,docs,refactor,test"
+    # filtered_data = md.data_prep(filtered_data,labels)
+    # filtered_data.reset_index(drop=True).to_feather("data/training_data/processed_angular_data.ftr")
 
     md.report(filtered_data,mode,split,save_report)
 
