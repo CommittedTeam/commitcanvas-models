@@ -3,14 +3,10 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import plot_confusion_matrix
-import matplotlib.pyplot as plt
 from commitcanvas_models.train_model.tokenizers import stem_tokenizer
 from commitcanvas_models.train_model.tokenizers import dummy
-from sklearn.metrics import get_scorer
 import joblib
-import pandas as pd
-
+import os
 
 def build_pipline():
 
@@ -40,7 +36,7 @@ def build_pipline():
   return pipeline
 
 def data_prep(data,labels):
-
+  # TODO use loc instead
   labels = labels.split(",")
   data = data[data["commit_type"].isin(labels)]
   # drop commits made by the bots
@@ -63,61 +59,18 @@ def cross_val_split(data,project):
 
   train = data[data.name != project]
   test = data[data.name == project]
-  print(train)
-  print(test)
-  train_features,train_labels = feature_label_split(train)
-  test_features,test_labels = feature_label_split(test)
 
-  return (train_features,train_labels,test_features,test_labels)
+  return (train,test)
 
 
-def train_test_split(data,project,size):
+def train_test_split(data,size):
   
-  data = data[data.name == project]
   length = len(data)
-
-  test_count = int(round(((length*size)/100),0))
+  test_count = int(round((length*size),0))
   # newest commits are at the top of the dataframe
   train,test =  data.tail(length-test_count), data.head(test_count)
-  print(train)
-  print(test)
-  train_features,train_labels = feature_label_split(train)
-  test_features,test_labels = feature_label_split(test)
 
-  return (train_features,train_labels,test_features,test_labels)
-
-def report(data,cross,project,split):
-  
-  classification_scores = {}
-  projects = data.name.unique()
-  
-  for repo in projects:
-      
-      if cross:
-
-        # Train test split for cross project validation
-        train_features,train_labels,test_features,test_labels = cross_val_split(data,repo)
-        save_fig = "cross"
-      elif project:
-
-        # Train test split for one project
-        train_features,train_labels,test_features,test_labels = train_test_split(data,repo,split)
-        save_fig = "project"
-
-      pipeline = build_pipline()
-      pipeline.fit(train_features,train_labels)
-      predicted = pipeline.predict(test_features)
-      scorers = ['precision','recall','f1']
-      score = [get_scorer(score)._score_func(test_labels, predicted,average="weighted",zero_division=0) for score in scorers]
-
-      print(score)
-      classification_scores.update({repo:score})
-
-      plot_confusion_matrix(pipeline, test_features, test_labels, cmap='Blues',normalize="true")
-      plt.savefig("classification_reports/{}/matrices/{}.jpg".format(save_fig,repo))
-  
-  scores = pd.DataFrame.from_dict(classification_scores, orient='index',columns=scorers)
-  scores.to_csv("classification_reports/{}/classification_report.csv".format(save_fig))
+  return (train,test)
 
 def save(pipeline,path):
 
@@ -125,3 +78,51 @@ def save(pipeline,path):
   joblib.dump(pipeline, "{}/trained_model.pkl".format(path))
   print("saving model complete")
 
+
+def save(test,predicted,path):
+  """Save the experimentation output"""
+  # save the project name, commit hash and commit type
+  # TODO update filter by column and use that
+  true_pred = test.loc[:, ('name','commit_hash','commit_type')]
+  true_pred["predicted"] = predicted
+  
+  # if file does not exist write header 
+  if not os.path.isfile(path):
+    true_pred.to_csv(path, header='column_names', index=False)
+  else: # otherwise append without writing the header
+    true_pred.to_csv(path, mode='a', header=False, index=False)
+
+def report(data,mode,split,path):
+  
+  projects = data.name.unique()
+  
+  for repo in projects:
+      
+      if mode == 'cross_project':
+
+        # Train test split for cross project validation
+        train,test = cross_val_split(data,repo)
+
+        train_features,train_labels = feature_label_split(train)
+        test_features,test_labels = feature_label_split(test)
+
+      elif mode == 'project':
+        project_data = data[data.name == repo]
+        # Train test split for one project
+        train,test = train_test_split(project_data,split)
+      
+        train_features,train_labels = feature_label_split(train)
+        test_features,test_labels = feature_label_split(test)
+
+
+      pipeline = build_pipline()
+      pipeline.fit(train_features,train_labels)
+      predicted = pipeline.predict(test_features)
+      print(repo) 
+      save(test,predicted,path)
+
+
+
+
+      # print(repo)
+      # print(precision_score(test_labels, predicted, average='weighted'))

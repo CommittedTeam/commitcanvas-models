@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from commitcanvas_models.train_model import selection
+from commitcanvas_models.data_handling import selection
 
 data = {
     "num_lines_deleted": [0, 1, 47],

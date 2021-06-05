@@ -14,3 +14,7 @@ def label_total_ratio(data):
     ratios = data.commit_type.value_counts(normalize=True)
     print(ratios)
     return ratios
+
+
+labels = pd.read_csv("../classification_reports/project/test_75_25.csv")
+print(labels)

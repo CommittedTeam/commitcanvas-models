@@ -41,11 +41,15 @@ def filter_projects_by_label(data, labels, min_label_count):
     return filtered_repos
 
 def map_language_to_name(dataset):
-    repo_meta_data = pd.read_csv("data/angular_repos.csv")
+    repo_meta_data = pd.read_csv("data/projects_metadata/angular_repos.csv")
 
     repos = filter_columns(repo_meta_data,['name','language'])
     repos = repos[repos["name"].isin(dataset.name.tolist())]
     return repos
+
+def drop_by_language(data,count):
+    data = data.groupby('language').filter(lambda x : len(x)>count)
+    return data
 
 def select_projects_subset(dataset,subset_size):
     # takes csv file with language counts
@@ -53,9 +57,9 @@ def select_projects_subset(dataset,subset_size):
     dataset = map_language_to_name(dataset)
     data = dataset.dropna()
     # drop languages that have only 1 instance
-    data = data.groupby('language').filter(lambda x : len(x)>1)
+    data = drop_by_language(data,1)
 
     # random proportionate repository selection based on the language
     name, language = proportionate_subset_selection(subset_size,data['name'],data['language'])
-
-    return (name.reset_index(drop=True),language.reset_index(drop=True))
+    selected = pd.concat([name, language], axis=1).reset_index(drop=True)
+    return selected
