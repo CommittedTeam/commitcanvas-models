@@ -41,7 +41,7 @@ def filter_projects_by_label(data, labels, min_label_count):
     return filtered_repos
 
 def map_language_to_name(dataset):
-    repo_meta_data = pd.read_csv("data/projects_metadata/angular_repos.csv")
+    repo_meta_data = pd.read_csv("data/data/projects_metadata/angular_repos.csv")
 
     repos = filter_columns(repo_meta_data,['name','language'])
     repos = repos[repos["name"].isin(dataset.name.tolist())]

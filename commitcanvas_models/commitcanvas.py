@@ -18,7 +18,7 @@ def callback():
 def select(labels: str = "fix,feat,chore,docs,refactor,test", min_label: int = 50, subset: bool = False, subset_size: float = 0.50):
     """Select and save repositories for training"""
     # TODO counting the commits per label needs to be refactored
-    data = pd.read_feather("data/training_data/angular_data.ftr")
+    data = pd.read_feather("data/data/training_data/angular_data.ftr")
     print(data)
     # select repositories that use the given labels and have at least given amount of commits per label
     filtered = selection.filter_projects_by_label(data,labels,min_label)
@@ -32,7 +32,7 @@ def select(labels: str = "fix,feat,chore,docs,refactor,test", min_label: int = 5
     filtered = selection.drop_by_language(selected_set,1).reset_index(drop=True)
 
     # save the repository names for training
-    filtered.to_csv("data/training_data/training_repos.csv")
+    filtered.to_csv("data/data/training_data/training_repos.csv")
 
     print("\nSelected labels: ", labels)
     print("Minimum amount of commits required per label: ",min_label)
@@ -51,10 +51,10 @@ def train(mode: str,  save_report: str, split: float = 0.25):
         typer.echo("\nInvalid mode: {}. Valid modes are <project> and <cross_project. Please see the documentation for more details\n".format(mode))
         raise typer.Exit()
 
-    data = pd.read_csv("data/training_data/training_repos.csv",index_col=0)
+    data = pd.read_csv("data/data/training_data/training_repos.csv",index_col=0)
 
     # use processed data
-    collected_data = pd.read_feather("data/training_data/processed_angular_data.ftr")
+    collected_data = pd.read_feather("data/data/training_data/processed_angular_data.ftr")
 
     filtered_data = collected_data[collected_data['name'].isin(data.name.tolist())]
     print(data)
