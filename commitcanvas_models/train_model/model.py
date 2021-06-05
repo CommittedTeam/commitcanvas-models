@@ -7,6 +7,7 @@ from commitcanvas_models.train_model.tokenizers import stem_tokenizer
 from commitcanvas_models.train_model.tokenizers import dummy
 import joblib
 import os
+from sklearn.metrics import f1_score
 
 def build_pipline():
 
@@ -90,7 +91,6 @@ def save(test,predicted,path):
   else: # otherwise append without writing the header
     true_pred.to_csv(path, mode='a', header=False, index=False)
 
-from sklearn.metrics import f1_score
 
 def report(data,mode,split,path):
   
