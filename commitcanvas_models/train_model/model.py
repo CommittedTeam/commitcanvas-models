@@ -7,7 +7,6 @@ from commitcanvas_models.train_model.tokenizers import stem_tokenizer
 from commitcanvas_models.train_model.tokenizers import dummy
 import joblib
 import os
-from sklearn.metrics import f1_score
 
 def build_pipline():
 

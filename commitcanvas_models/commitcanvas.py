@@ -1,7 +1,7 @@
 """Training and evaluating the classification model."""
 import typer
 from commitcanvas_models.train_model import model as md
-from commitcanvas_models.data_handling import selection
+from commitcanvas_models.data_handling import helpers
 import pandas as pd
 # from commitcanvas_models.train_model.tokenizers import dummy
 # from commitcanvas_models.train_model.tokenizers import stem_tokenizer
@@ -17,22 +17,20 @@ def callback():
 @app.command()
 def select(labels: str = "fix,feat,chore,docs,refactor,test", min_label: int = 50, subset: bool = False, subset_size: float = 0.50):
     """Select and save repositories for training"""
-    # TODO counting the commits per label needs to be refactored
     data = pd.read_feather("data/training_data/angular_data.ftr")
-    print(data)
     # select repositories that use the given labels and have at least given amount of commits per label
-    filtered = selection.filter_projects_by_label(data,labels,min_label)
-    print(filtered)
+    filtered = helpers.filter_projects_by_label(data,labels,min_label)
     if subset:
-        selected_set = selection.select_projects_subset(filtered,subset_size)
+        selected_set = helpers.select_projects_subset(filtered,subset_size)
     else:
-        selected_set = selection.map_language_to_name(filtered)
+        selected_set = helpers.map_language_to_name(filtered)
 
     # drop languages that have only one project
-    filtered = selection.drop_by_language(selected_set,1).reset_index(drop=True)
+    filtered = helpers.drop_by_language(selected_set,1).reset_index(drop=True)
 
     # save the repository names for training
     filtered.to_csv("data/training_data/training_repos.csv")
+
 
     print("\nSelected labels: ", labels)
     print("Minimum amount of commits required per label: ",min_label)
@@ -56,10 +54,11 @@ def train(mode: str,  save_report: str, split: float = 0.25):
     # use processed data
     collected_data = pd.read_feather("data/training_data/processed_angular_data.ftr")
 
+    # take the selected repositories for training
     filtered_data = collected_data[collected_data['name'].isin(data.name.tolist())]
     print(data)
 
-    # pre_process the data before training
+    # NOTE: if you decide to run the classifier on raw data ensure to run the pre_processing steps
     # labels = "fix,feat,chore,docs,refactor,test"
     # filtered_data = md.data_prep(filtered_data,labels)
     # filtered_data.reset_index(drop=True).to_feather("data/training_data/processed_angular_data.ftr")
