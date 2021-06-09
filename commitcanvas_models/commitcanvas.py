@@ -3,6 +3,8 @@ import typer
 from commitcanvas_models.train_model import model as md
 from commitcanvas_models.data_handling import helpers
 import pandas as pd
+from joblib import Parallel, delayed
+import time
 # from commitcanvas_models.train_model.tokenizers import dummy
 # from commitcanvas_models.train_model.tokenizers import stem_tokenizer
 
@@ -52,16 +54,31 @@ def train(mode: str,  save_report: str, split: float = 0.25):
     data = pd.read_csv("data/training_data/training_repos.csv",index_col=0)
 
     # use processed data
-    collected_data = pd.read_feather("data/training_data/processed_angular_data.ftr")
+    collected_data = pd.read_feather("data/training_data/data_natural_language.ftr")
+    print("collected_data")
+    print(collected_data)
 
-    # take the selected repositories for training
+    # # take the selected repositories for training
     filtered_data = collected_data[collected_data['name'].isin(data.name.tolist())]
-    print(data)
+    print("filtered data")
+    print(filtered_data)
 
     # NOTE: if you decide to run the classifier on raw data ensure to run the pre_processing steps
-    # labels = "fix,feat,chore,docs,refactor,test"
-    # filtered_data = md.data_prep(filtered_data,labels)
-    # filtered_data.reset_index(drop=True).to_feather("data/training_data/processed_angular_data.ftr")
+    labels = "fix,feat,chore,docs,refactor,test"
+    # # commit_messages = filtered_data["commit_subject"]
 
+    # # for i in commit_messages:
+    # #     print(i)
+    # #     print(helpers.detect_lang(i))
+
+    filtered_data = md.data_prep(filtered_data,labels)
+    # # # Store the processed data
+    # filtered_data.reset_index(drop=True).to_feather("data/training_data/processed_angular_data_droped_non_eng.ftr")
+
+    start = time.time()
     md.report(filtered_data,mode,split,save_report)
+    end = time.time()
+
+    print(end-start)
+    
 

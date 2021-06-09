@@ -5,11 +5,18 @@ from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from commitcanvas_models.train_model.tokenizers import stem_tokenizer
 from commitcanvas_models.train_model.tokenizers import dummy
+from commitcanvas_models.data_handling import helpers
 import joblib
 import os
+import time
+import multiprocessing
+
+
 
 def build_pipline():
 
+  n_cpus = multiprocessing.cpu_count()
+  
   # steps for processing the commit subject
   subject = "commit_subject"
   subject_transformer = Pipeline(steps = [('vect', CountVectorizer(tokenizer=stem_tokenizer)),
@@ -27,11 +34,11 @@ def build_pipline():
       ('extension', extension_transformer,extension)]
 
   # set remainder as passthrough so that the other columns don't get lost
-  col_transform = ColumnTransformer(transformers=t,remainder="passthrough")
-  model = RandomForestClassifier(random_state=42)
+  col_transform = ColumnTransformer(transformers=t,remainder="passthrough",n_jobs=n_cpus-1)
+  model = RandomForestClassifier(random_state=42, n_jobs=n_cpus-1)
 
   # set up the pipeline with transformer and model
-  pipeline = Pipeline(steps=[('prep',col_transform), ('model', model)])
+  pipeline = Pipeline(steps=[('prep',col_transform), ('model', model)],verbose=True)
 
   return pipeline
 
@@ -41,11 +48,12 @@ def data_prep(data,labels):
   data = data[data["commit_type"].isin(labels)]
   # drop commits made by the bots
   data = data[data["isbot"] != True]
+  # keep commits that have 'en' or 'un' as language
+  data = data[data['natural_language'].isin(['en','un'])]
   # drop duplicate commits if any
   data = data.drop_duplicates("commit_hash")
   # drop nan rows with nan values
   data = data.dropna()
-
   return data
 
 def feature_label_split(data):
@@ -96,12 +104,12 @@ def report(data,mode,split,path):
   projects = data.name.unique()
   
   for repo in projects:
+      start = time.time()
       print(repo)
       if mode == 'cross_project':
 
         # Train test split for cross project validation
         train,test = cross_val_split(data,repo)
-
         train_features,train_labels = feature_label_split(train)
         test_features,test_labels = feature_label_split(test)
 
@@ -112,8 +120,11 @@ def report(data,mode,split,path):
         train_features,train_labels = feature_label_split(train)
         test_features,test_labels = feature_label_split(test)
 
-
+      
       pipeline = build_pipline()
       pipeline.fit(train_features,train_labels)
-      predicted = pipeline.predict(test_features) 
+      predicted = pipeline.predict(test_features)
+      print("saving")
       save(test,predicted,path)
+      print("saved")
+

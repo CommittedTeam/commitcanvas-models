@@ -1,5 +1,6 @@
 import pytest
 import pandas as pd
+from spacy import language
 from commitcanvas_models.data_handling import helpers
 
 data = {
@@ -64,3 +65,17 @@ def test_filter_projects_by_label(input_data,expected_dataframe):
     """Check that projects are selected correctly"""
     filtered = helpers.filter_projects_by_label(input_data[0],input_data[1],input_data[2])
     assert set(filtered.all()) == set(expected_dataframe.all())
+
+# make sure to test for the unknowns
+@pytest.mark.parametrize(
+    "input_text,expected_lang",
+    [
+     #("feat: add support for language detection to commitcanvas_models",'en'),
+     ("chore: 补全作者名",'en'),
+     ("fix: ეს მესიჯი არის ინგლისურ ენაზე",'en'),
+     ('feat: este mensaje está en inglés','en')
+    ],
+)
+def test_lang_detector_foreign_languages(input_text,expected_lang):
+    lang = helpers.detect_lang(input_text)
+    assert lang["language"] != expected_lang

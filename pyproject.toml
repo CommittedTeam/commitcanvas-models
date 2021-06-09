@@ -6,10 +6,18 @@ authors = ["bagashvilit <bagashvilit@allegheny.edu>"]
 
 [tool.poetry.dependencies]
 python = ">=3.7.1,<4.0"
+en_core_web_sm = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz" }
 reporover = { git = "https://github.com/CommittedTeam/RepoRover", branch = "repo-mining" }
 sklearn = "^0.0"
 matplotlib = "^3.4.2"
 nltk = "^3.6.2"
+spacy-langdetect = "^0.1.2"
+spacy = "^3.0.6"
+textblob = "^0.15.3"
+googletrans = "^3.0.0"
+google-trans-new = "^1.1.9"
+pycld2 = "^0.41"
+seaborn = "^0.11.1"
 
 
 [tool.poetry.dev-dependencies]
