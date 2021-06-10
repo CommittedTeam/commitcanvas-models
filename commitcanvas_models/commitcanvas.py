@@ -2,9 +2,8 @@
 import typer
 from commitcanvas_models.train_model import model as md
 from commitcanvas_models.data_handling import helpers
+from commitcanvas_models.data_handling import statistics
 import pandas as pd
-from joblib import Parallel, delayed
-import time
 # from commitcanvas_models.train_model.tokenizers import dummy
 # from commitcanvas_models.train_model.tokenizers import stem_tokenizer
 
@@ -54,7 +53,7 @@ def train(mode: str,  save_report: str, split: float = 0.25):
     data = pd.read_csv("data/training_data/training_repos.csv",index_col=0)
 
     # use processed data
-    collected_data = pd.read_feather("data/training_data/data_natural_language.ftr")
+    collected_data = pd.read_feather("data/training_data/angular_data.ftr")
     print("collected_data")
     print(collected_data)
 
@@ -63,22 +62,44 @@ def train(mode: str,  save_report: str, split: float = 0.25):
     print("filtered data")
     print(filtered_data)
 
-    # NOTE: if you decide to run the classifier on raw data ensure to run the pre_processing steps
+    # # NOTE: if you decide to run the classifier on raw data ensure to run the pre_processing steps
     labels = "fix,feat,chore,docs,refactor,test"
-    # # commit_messages = filtered_data["commit_subject"]
-
-    # # for i in commit_messages:
-    # #     print(i)
-    # #     print(helpers.detect_lang(i))
 
     filtered_data = md.data_prep(filtered_data,labels)
-    # # # Store the processed data
-    # filtered_data.reset_index(drop=True).to_feather("data/training_data/processed_angular_data_droped_non_eng.ftr")
 
-    start = time.time()
+    print(filtered_data)
+
     md.report(filtered_data,mode,split,save_report)
-    end = time.time()
 
-    print(end-start)
+# data/classification_reports/project/{}.csv
+# data/classification_reports/cross_project/prediction_output.csv
+
+@app.command()
+def stats(data_path, save_report:str=None, save_plots:str=None):
+
+    data = pd.read_csv(data_path)
+
+    projects = data.name.unique()
+
+    report = []
+    test_label_count = []
+
+    for project in projects:
+
+        project_data = data[data["name"]==project]
+
+        report.append(statistics.classification_report(project_data,project))
+
+        test_label_count.append(project_data.commit_type.value_counts().to_dict())
+        # save confusion matrix for each project
+        statistics.plot_confusion_matrix(project_data,save_plots,project)
+
+
+    # classification report for each project
+    reports = pd.DataFrame(report)
+    test_counts = pd.DataFrame(test_label_count)
+    combined = pd.concat([reports,test_counts],axis=1)
+    combined.to_csv(save_report)
+
     
 

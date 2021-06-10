@@ -48,12 +48,11 @@ def data_prep(data,labels):
   data = data[data["commit_type"].isin(labels)]
   # drop commits made by the bots
   data = data[data["isbot"] != True]
-  # keep commits that have 'en' or 'un' as language
-  data = data[data['natural_language'].isin(['en','un'])]
   # drop duplicate commits if any
   data = data.drop_duplicates("commit_hash")
   # drop nan rows with nan values
   data = data.dropna()
+
   return data
 
 def feature_label_split(data):
@@ -67,7 +66,6 @@ def cross_val_split(data,project):
 
   train = data[data.name != project]
   test = data[data.name == project]
-
   return (train,test)
 
 
@@ -99,10 +97,12 @@ def save(test,predicted,path):
     true_pred.to_csv(path, mode='a', header=False, index=False)
 
 
+
+import pandas as pd
 def report(data,mode,split,path):
   
   projects = data.name.unique()
-  
+
   for repo in projects:
       start = time.time()
       print(repo)
