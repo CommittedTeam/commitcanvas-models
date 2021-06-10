@@ -47,10 +47,10 @@ def plot_confusion_matrix(data,save_plots,name):
 
 
 
-project_75_25 = pd.read_csv("../classification_reports/project/classification_report_75_25.csv")
-project_80_20 = pd.read_csv("../classification_reports/project/classification_report_80_20.csv")
-project_60_40 = pd.read_csv("../classification_reports/project/classification_report_60_40.csv")
-cross_project = pd.read_csv("../classification_reports/cross_project/classification_report.csv")
+# project_75_25 = pd.read_csv("../classification_reports/project/classification_report_75_25.csv")
+# project_80_20 = pd.read_csv("../classification_reports/project/classification_report_80_20.csv")
+# project_60_40 = pd.read_csv("../classification_reports/project/classification_report_60_40.csv")
+# cross_project = pd.read_csv("../classification_reports/cross_project/classification_report.csv")
 
-sns.boxplot(data=cross_project[["precision","recall","fscore"]],color='grey')
-plt.savefig("../classification_reports/boxplots/cross_project")
+# sns.boxplot(data=cross_project[["precision","recall","fscore"]],color='grey')
+# plt.savefig("../classification_reports/boxplots/cross_project")

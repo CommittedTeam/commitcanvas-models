@@ -97,7 +97,7 @@ def stats(data_path, save_report:str=None, save_plots:str=None):
 
     # classification report for each project
     reports = pd.DataFrame(report)
-    test_counts = pd.DataFrame(test_label_count)
+    test_counts = pd.DataFrame(test_label_count).fillna(0)
     combined = pd.concat([reports,test_counts],axis=1)
     combined.to_csv(save_report)
 
