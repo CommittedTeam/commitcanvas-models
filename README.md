@@ -13,7 +13,32 @@
 
    - `split` option takes the ratio. This ratio will be used as a size of the test set for the `project` mode. By default the value of `split` is 0.25. This means that if one project has 800 commits then top(chronologically newest) 200 will be set aside for testing, and the rest 600 will be used for training.
 
-sample command: `commitcanvas train project data/classification_reports/project/split_90_10.csv --split 0.10`
+sample usage: `commitcanvas train project data/classification_reports/project/split_90_10.csv --split 0.10`
+
+## gettign the stats from classification reports
+
+- `commitcanvas mwu <path1> <path2>`
+
+Run Mann–Whitney U statistical test
+
+sample usage:
+
+project split 75/25 vs project split 80/20
+`commitcanvas mwu classification_reports/project/classification_report_75_25.csv classification_reports/project/classification_report_80_20.csv`
+
+cross project vs 80/20
+`commitcanvas mwu classification_reports/cross_project/classification_report.csv classification_reports/project/classification_report_80_20.csv`
+
+- `commitcanvas boxplot <path> <save>`
+
+if you would like to save the boxplot figures please provide the path
+
+get boxplot stats such as median, mean, whishi, whislo, values. And get projects from the data that carry those values in the classification report
+
+sample usage:
+
+`commitcanvas boxplot classification_reports/project/classification_report_60_40.csv `
+
 
 ## Data Overview
 
@@ -39,10 +64,6 @@ csv file also includes other meta data such as dominant programming language,cri
 - angular_data.ftr
 
 This dataset has commit data for over 300 repositories that follow angular conventional guidelines
-
-- processed_angular_data.ftr
-
-This dataset is pre-processed version of angular_data.ftr. preprocessing steps include removing commtis made by the bots, removing duplicate commits if any, removing rows with Nan values.
 
 - training_repos.ftr
 

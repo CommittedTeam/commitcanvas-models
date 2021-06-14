@@ -88,18 +88,18 @@ def report(data_path, save_report:str=None, save_plots:str=None):
 
 
 @app.command()
-def statistical_tests(path1: str, path2: str):
+def mwu(path1: str, path2: str):
     scores = ['precision','recall','fscore']
     data1 = pd.read_csv(path1)
     data2 = pd.read_csv(path2)
     for score in scores:
-        mwu_results = pg.mwu(data1[score], data2[score], tail='one-sided')
+        mwu_results = pg.mwu(data1[score], data2[score], tail='two-sided')
         print("\n Result for {}".format(score))
         print(mwu_results)
 
 # save "../classification_reports/boxplots/cross_project"
 @app.command()
-def plot_boxplot(plot_data_path: str, save: str=None):
+def boxplot(plot_data_path: str, save: str=None):
     # make sure to fix the plot labels
     plot_data = pd.read_csv(plot_data_path,index_col=0)
     scores = ["precision","recall","fscore"]
@@ -113,14 +113,15 @@ def plot_boxplot(plot_data_path: str, save: str=None):
 
         print("\nOverall boxplot stats for {}".format(score))
         print(stats)
-        print("\nProject at the value of median")
+        print("\nProject at the value of mean")
         print(median)
         print("\nProject at the value of whishi")
         print(whishi)
         print("\nProject at the value of whislo")
         print(whislo)
-        print("\nFar outlier projects")
-        print(fliers)
+        if stats[0]["fliers"].any():
+            print("\nFar outlier projects")
+            print(fliers)
         print("\n")
 
     if save:
