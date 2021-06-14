@@ -4,6 +4,10 @@ from commitcanvas_models.train_model import model as md
 from commitcanvas_models.data_handling import helpers
 from commitcanvas_models.data_handling import statistics
 import pandas as pd
+import seaborn as sns
+import pingouin as pg
+import matplotlib.pyplot as plt
+from matplotlib.cbook import boxplot_stats
 # from commitcanvas_models.train_model.tokenizers import dummy
 # from commitcanvas_models.train_model.tokenizers import stem_tokenizer
 
@@ -50,24 +54,7 @@ def train(mode: str,  save_report: str, split: float = 0.25):
         typer.echo("\nInvalid mode: {}. Valid modes are <project> and <cross_project. Please see the documentation for more details\n".format(mode))
         raise typer.Exit()
 
-    data = pd.read_csv("data/training_data/training_repos.csv",index_col=0)
-
-    # use processed data
-    collected_data = pd.read_feather("data/training_data/angular_data.ftr")
-    print("collected_data")
-    print(collected_data)
-
-    # # take the selected repositories for training
-    filtered_data = collected_data[collected_data['name'].isin(data.name.tolist())]
-    print("filtered data")
-    print(filtered_data)
-
-    # # NOTE: if you decide to run the classifier on raw data ensure to run the pre_processing steps
-    labels = "fix,feat,chore,docs,refactor,test"
-
-    filtered_data = md.data_prep(filtered_data,labels)
-
-    print(filtered_data)
+    filtered_data = md.select_training_data()
 
     md.report(filtered_data,mode,split,save_report)
 
@@ -75,31 +62,70 @@ def train(mode: str,  save_report: str, split: float = 0.25):
 # data/classification_reports/cross_project/prediction_output.csv
 
 @app.command()
-def stats(data_path, save_report:str=None, save_plots:str=None):
+def report(data_path, save_report:str=None, save_plots:str=None):
 
     data = pd.read_csv(data_path)
 
     projects = data.name.unique()
 
     report = []
-    test_label_count = []
-
     for project in projects:
 
         project_data = data[data["name"]==project]
 
         report.append(statistics.classification_report(project_data,project))
-
-        test_label_count.append(project_data.commit_type.value_counts().to_dict())
         # save confusion matrix for each project
-        statistics.plot_confusion_matrix(project_data,save_plots,project)
+        if save_plots:
+            statistics.plot_confusion_matrix(project_data,save_plots,project)
 
 
     # classification report for each project
     reports = pd.DataFrame(report)
-    test_counts = pd.DataFrame(test_label_count).fillna(0)
-    combined = pd.concat([reports,test_counts],axis=1)
-    combined.to_csv(save_report)
+    combined = reports.merge(statistics.get_training_set_count(data))
+    print(combined)
+    if save_report:
+        combined.to_csv(save_report)
+
+
+@app.command()
+def statistical_tests(path1: str, path2: str):
+    scores = ['precision','recall','fscore']
+    data1 = pd.read_csv(path1)
+    data2 = pd.read_csv(path2)
+    for score in scores:
+        mwu_results = pg.mwu(data1[score], data2[score], tail='one-sided')
+        print("\n Result for {}".format(score))
+        print(mwu_results)
+
+# save "../classification_reports/boxplots/cross_project"
+@app.command()
+def plot_boxplot(plot_data_path: str, save: str=None):
+    # make sure to fix the plot labels
+    plot_data = pd.read_csv(plot_data_path,index_col=0)
+    scores = ["precision","recall","fscore"]
+    sns.boxplot(data=plot_data[scores],color='grey')
+    for score in scores:
+        stats = boxplot_stats(plot_data[score])
+        median = plot_data[plot_data[score] == round(stats[0]["mean"],2)]
+        whishi = plot_data[plot_data[score] == stats[0]["whishi"]] 
+        whislo = plot_data[plot_data[score] == stats[0]["whislo"]] 
+        fliers =  plot_data[plot_data[score].isin(stats[0]["fliers"])]
+
+        print("\nOverall boxplot stats for {}".format(score))
+        print(stats)
+        print("\nProject at the value of median")
+        print(median)
+        print("\nProject at the value of whishi")
+        print(whishi)
+        print("\nProject at the value of whislo")
+        print(whislo)
+        print("\nFar outlier projects")
+        print(fliers)
+        print("\n")
+
+    if save:
+        plt.savefig(save)
+
 
     
 

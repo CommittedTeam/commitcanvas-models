@@ -1,11 +1,11 @@
 """Get statistical information for the given data"""
-import pandas as pd
 from sklearn.metrics import precision_recall_fscore_support
 import pandas as pd
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 from sklearn.metrics import ConfusionMatrixDisplay
-import seaborn as sns
+from commitcanvas_models.train_model import model as md
+from commitcanvas_models.data_handling import helpers
 
 def label_total_ratio(data):
     # This function is not used yet
@@ -45,12 +45,33 @@ def plot_confusion_matrix(data,save_plots,name):
   name = data['name'].tolist()[0]
   plt.savefig("{}/{}.jpg".format(save_plots,name))
 
+def get_training_set_count(test_data):
+
+    filtered_data = md.select_training_data()
+
+    train_data = filtered_data[~filtered_data["commit_hash"].isin(test_data.commit_hash)]
+
+    train_grouped = helpers.groupby_dummy_transformer(train_data,'commit_type','name').set_index('name')
+    test_grouped = helpers.groupby_dummy_transformer(test_data,'commit_type','name').set_index('name')
+    total_grouped = helpers.groupby_dummy_transformer(filtered_data,'commit_type','name').set_index('name')
+
+    train = train_grouped.add_suffix('_train')
+    test = test_grouped.add_suffix('_test')
+    total = total_grouped.add_suffix('_total')
+    
+    combined = pd.concat([total,train,test],axis=1).reset_index()
+
+    return combined
 
 
-# project_75_25 = pd.read_csv("../classification_reports/project/classification_report_75_25.csv")
-# project_80_20 = pd.read_csv("../classification_reports/project/classification_report_80_20.csv")
-# project_60_40 = pd.read_csv("../classification_reports/project/classification_report_60_40.csv")
-# cross_project = pd.read_csv("../classification_reports/cross_project/classification_report.csv")
 
-# sns.boxplot(data=cross_project[["precision","recall","fscore"]],color='grey')
-# plt.savefig("../classification_reports/boxplots/cross_project")
+
+
+
+
+
+
+
+
+
+

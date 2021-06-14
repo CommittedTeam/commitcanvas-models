@@ -47,4 +47,4 @@ This dataset is pre-processed version of angular_data.ftr. preprocessing steps i
 - training_repos.ftr
 
 These repositories will be used in the experiments. Repositories included in this
-file is subset of repositories in `projects_metadata/angular_repos.csv`. These repositories were selected sicne they at least use following labels `fix,feat,chore,refactor,test,docs` and have at least 50 commits per label
+file is subset of repositories in `projects_metadata/angular_repos.csv`. These repositories were selected since they at least use following labels `fix,feat,chore,refactor,test,docs` and have at least 50 commits per label

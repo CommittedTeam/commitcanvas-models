@@ -1,19 +1,7 @@
 """Select repositories"""
 import pandas as pd
 from sklearn.model_selection import train_test_split
-import pycld2
 
-
-def detect_lang(text):    
-    try:
-        _, _, _, detected_language = pycld2.detect(text,  returnVectors=True)       
-        return detected_language[0][3]
-    except (pycld2.error,IndexError):
-        return None
-
-def add_lang_column(data):
-    data['natural_language'] = data["commit_subject"].apply(lambda row: detect_lang(row))
-    return data
     
 def filter_columns(data,column_names):
     """Keep selected columns in the dataframe."""   

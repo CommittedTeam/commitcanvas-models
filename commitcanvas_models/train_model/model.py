@@ -96,7 +96,20 @@ def save(test,predicted,path):
   else: # otherwise append without writing the header
     true_pred.to_csv(path, mode='a', header=False, index=False)
 
+def select_training_data():
+    data = pd.read_csv("data/training_data/training_repos.csv",index_col=0)
 
+    # use processed data
+    collected_data = pd.read_feather("data/training_data/angular_data.ftr")
+
+    # # take the selected repositories for training
+    filtered_data = collected_data[collected_data['name'].isin(data.name.tolist())]
+
+    labels = "fix,feat,chore,docs,refactor,test"
+
+    filtered_data = data_prep(filtered_data,labels)
+
+    return filtered_data
 
 import pandas as pd
 def report(data,mode,split,path):
@@ -127,4 +140,7 @@ def report(data,mode,split,path):
       print("saving")
       save(test,predicted,path)
       print("saved")
+
+
+
 
