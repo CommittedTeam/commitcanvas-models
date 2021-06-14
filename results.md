@@ -10,6 +10,8 @@ https://pingouin-stats.org/generated/pingouin.mwu.html
 
 [boxplot_stats](https://matplotlib.org/stable/api/cbook_api.html#matplotlib.cbook.boxplot_stats) for getting the dictionaries of statistics used to draw a series of box and whisker plots.
 
+NOTE: the labels of the boxplots need to be finalized
+
 ## Cross project
 
 ### Mann–Whitney U statistical test results
@@ -68,6 +70,8 @@ MWU  1230.0  two-sided  0.161716  0.156379  0.421811
 ```
 
 ### Boxplot stats
+
+Please see [classification_report](commitcanvas_models/classification_reports/cross_project/classification_report.csv) for more details about the individual projects such as the size of test set, train set and total set
 
 ![cross_project](commitcanvas_models/classification_reports/boxplots/cross_project.png)
 
@@ -196,6 +200,8 @@ MWU  1590.5  two-sided  0.416969 -0.090878  0.545439
 
 - 80/20
 
+Please see [classification_report_80_20](commitcanvas_models/classification_reports/project/classification_report_80_20.csv) for more details about the individual projects such as the size of test set, train set and total set
+
 ![project_80_20](commitcanvas_models/classification_reports/boxplots/project_80_20.png)
 
 ```
@@ -294,6 +300,8 @@ Far outlier projects
 
 - 75/25
 
+Please see [classification_report_75_25](commitcanvas_models/classification_reports/project/classification_report_75_25.csv) for more details about the individual projects such as the size of test set, train set and total set
+
 ![project_75_25](commitcanvas_models/classification_reports/boxplots/project_75_25.png)
 
 ```
@@ -389,6 +397,8 @@ Project at the value of whislo
 ```
 
 - 60/40
+
+Please see [classification_report_60_40](commitcanvas_models/classification_reports/project/classification_report_60_40.csv) for more details about the individual projects such as the size of test set, train set and total set
 
 ![project_60_40](commitcanvas_models/classification_reports/boxplots/project_60_40.png)
 
