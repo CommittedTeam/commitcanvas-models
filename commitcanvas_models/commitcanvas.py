@@ -106,15 +106,15 @@ def boxplot(plot_data_path: str, save: str=None):
     sns.boxplot(data=plot_data[scores],color='grey')
     for score in scores:
         stats = boxplot_stats(plot_data[score])
-        median = plot_data[plot_data[score] == round(stats[0]["mean"],2)]
+        mean = plot_data[round(plot_data[score],2) == round(stats[0]["mean"],2)]
         whishi = plot_data[plot_data[score] == stats[0]["whishi"]] 
         whislo = plot_data[plot_data[score] == stats[0]["whislo"]] 
         fliers =  plot_data[plot_data[score].isin(stats[0]["fliers"])]
 
         print("\nOverall boxplot stats for {}".format(score))
         print(stats)
-        print("\nProject at the value of mean")
-        print(median)
+        print("\nProjects close to value of mean")
+        print(mean)
         print("\nProject at the value of whishi")
         print(whishi)
         print("\nProject at the value of whislo")

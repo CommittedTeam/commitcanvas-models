@@ -24,9 +24,9 @@ def classification_report(data,project):
     data = {
 
             "name": project,
-            "precision": round(precision,2),
-            "recall": round(recall,2),
-            "fscore": round(fscore,2)
+            "precision": precision,
+            "recall": recall,
+            "fscore": fscore
         }
 
     return data
