@@ -1,16 +1,5 @@
 ## Data Overview
 
-### Data stats
-
-The projects mentioned here have crticality score higher than 0.60. The projects have commits that follow conventional commit standard
-- total number of projects for deployed model: 304
-- total number of commits for training the deployed model: 515643
-
-The projects mentioned here have crticality score higher than 0.60. And have at least 50 commits per label `chore`, `docs` `feat` `fix` `refactor` `test`
-- total number of projects for experimentation: 54
-- total number of commits used in experimentation: 213192
-
-
 ### Select repositories for commit data collection
 
 Select the repositories based on following criteria:
@@ -41,20 +30,35 @@ Threats to validity:
  From the selected repositories we collected data for each commit that follows angular's conventional commit syntax.
 
 `name`: name of the repository
+
 `commit_hash`: commit hash
+
 `commit_msg`: commit message
+
 `commit_subject`: subject line of the commit message
+
 `commit_type`: conventional label
+
 `commit_author_name`: name of the commit author
+
 `commit_author_email`: email of the commit author
-`isbot`: determine if the commit was made by the bot based on the commit author name and email [supporting work](https://dl.acm.org/doi/abs/10.1145/3379597.3387478)              
+
+`isbot`: determine if the commit was made by the bot based on the commit author name and email [supporting work](https://dl.acm.org/doi/abs/10.1145/3379597.3387478)       
+
 `file_paths`: list of the file paths that were modified by the commit
+
 `num_files`: number of files modified
+
 `test_files`: number of files that could be related to the software testing [supporting work](https://softwareprocess.es/pubs/hindleICPC2009-large-changes-classification.pdf)
+
 `unique_file_extensions`: list of unique file extensions
+
 `num_unique_file_extensions`: number of file extensions
+
 `num_lines_added`: total number of added lines as shown from –shortstat
+
 `num_lines_removed`: total number of deleted lines as shown from –shortstat
+
 `num_lines_total`: total number of added+deleted as shown from –shortstat
 
 Highlights:
@@ -95,6 +99,18 @@ num_lines_total
 threats to validity:
 
 - small number of commit messages may be in language other than english
+
+
+
+### Data stats
+
+The projects mentioned here have crticality score higher than 0.60. The projects have commits that follow conventional commit standard
+- total number of projects for deployed model: 304
+- total number of commits for training the deployed model: 515643
+
+The projects mentioned here have crticality score higher than 0.60. And have at least 50 commits per label `chore`, `docs` `feat` `fix` `refactor` `test`
+- total number of projects for experimentation: 54
+- total number of commits used in experimentation: 213192
 
 
 
