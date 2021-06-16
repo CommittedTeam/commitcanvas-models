@@ -14,7 +14,7 @@ def label_total_ratio(data):
     print(ratios)
     return ratios
 
-def classification_report(data,project):
+def commitcanvas_classification_report(data,project):
 
     true = data.commit_type
     predicted = data.predicted
@@ -31,7 +31,7 @@ def classification_report(data,project):
 
     return data
 
-def plot_confusion_matrix(data,save_plots,name):
+def plot_confusion_matrix(data,save_plots,name=None):
   # this feature doens't work yet
   true = data.commit_type
   predicted = data.predicted
@@ -42,9 +42,11 @@ def plot_confusion_matrix(data,save_plots,name):
   disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=labels)
   disp.plot(cmap='Greys')
 
-  name = data['name'].tolist()[0]
-  plt.savefig("{}/{}.jpg".format(save_plots,name))
-
+  if name:
+      plt.savefig("{}/{}.jpg".format(save_plots,name))
+  if not name:
+      plt.savefig(save_plots)
+      
 def get_training_set_count(test_data):
 
     filtered_data = md.select_training_data()
@@ -66,7 +68,11 @@ def get_training_set_count(test_data):
 
 
 
-
+# angular_repos = pd.read_feather("../data/training_data/angular_data.ftr")
+# #selected = angular_repos[angular_repos["commit_type"].isin(["fix","feat","chore","docs","refactor","test"])]
+# preped = md.data_prep(angular_repos,"fix,feat,chore,docs,refactor,test")
+# print(preped)
+# print(len(preped.name.unique()))
 
 
 

@@ -70,11 +70,33 @@ MWU  1233.0  two-sided  0.167762  0.154321  0.42284
 
 ```
 
+### Classification report and confusion matrix
+
+![cross_project](commitcanvas_models/classification_reports/cross_project/matrix_all_projects.jpg)
+
+
+
 ### Boxplot stats
 
 Please see [classification_report](commitcanvas_models/classification_reports/cross_project/classification_report.csv) for more details about the individual projects such as the size of test set, train set and total set
 
 ![cross_project](commitcanvas_models/classification_reports/boxplots/cross_project.png)
+
+```
+              precision    recall  f1-score   support
+
+       chore       0.63      0.60      0.62     50087
+        docs       0.70      0.66      0.68     27454
+         fix       0.60      0.54      0.57     37361
+        feat       0.58      0.74      0.65     68051
+    refactor       0.51      0.24      0.33     18544
+        test       0.58      0.57      0.57     11695
+
+    accuracy                           0.61    213192
+   macro avg       0.60      0.56      0.57    213192
+weighted avg       0.61      0.61      0.60    213192
+
+```
 
 ```
 
@@ -217,17 +239,43 @@ MWU  1596.0  two-sided  0.398187 -0.09465  0.547325
 
 ```
 
-### Boxplot stats
+### Project stats
 
-- 80/20
+### 80/20 split
 
 Please see [classification_report_80_20](commitcanvas_models/classification_reports/project/classification_report_80_20.csv) for more details about the individual projects such as the size of test set, train set and total set
 
+box and whisker plot:
+
 ![project_80_20](commitcanvas_models/classification_reports/boxplots/project_80_20.png)
+
+confusion matrix:
+
+![project_80_20](commitcanvas_models/classification_reports/project/matrix_all_projects_80_20.jpg)
+
+classification report:
 
 ```
 
-Overall boxplot stats for precision
+              precision    recall  f1-score   support
+
+       chore       0.73      0.70      0.71     10442
+        docs       0.82      0.80      0.81      5930
+         fix       0.62      0.62      0.62      6731
+        feat       0.64      0.77      0.70     13225
+    refactor       0.63      0.36      0.46      3940
+        test       0.67      0.55      0.60      2368
+
+    accuracy                           0.68     42636
+   macro avg       0.69      0.63      0.65     42636
+weighted avg       0.69      0.68      0.68     42636
+
+```
+
+```
+
+Overall boxplot stats for precision:
+
 [{'mean': 0.6967467811409221, 'iqr': 0.08302081878637113, 'cilo': 0.6798036376315896, 'cihi': 0.7152784233166832, 'whishi': 0.8499977479220094, 'whislo': 0.5444600808304615, 'fliers': array([0.48644421, 0.52120298]), 'q1': 0.6585506351182077, 'med': 0.6975410304741364, 'q3': 0.7415714539045788}]
 
 Projects close to value of median
@@ -327,11 +375,36 @@ Far outlier projects
 
 ```
 
-- 75/25
+#### 75/25 split
 
 Please see [classification_report_75_25](commitcanvas_models/classification_reports/project/classification_report_75_25.csv) for more details about the individual projects such as the size of test set, train set and total set
 
+box and whisker plot
+
 ![project_75_25](commitcanvas_models/classification_reports/boxplots/project_75_25.png)
+
+confusion matrix:
+
+![project_75_25](commitcanvas_models/classification_reports/project/matrix_all_projects_75_25.jpg)
+
+classification report:
+
+```
+
+              precision    recall  f1-score   support
+
+       chore       0.73      0.70      0.71     12952
+        docs       0.82      0.80      0.81      7349
+         fix       0.60      0.62      0.61      8377
+        feat       0.64      0.77      0.70     16639
+    refactor       0.61      0.35      0.44      4942
+        test       0.71      0.51      0.59      3038
+
+    accuracy                           0.68     53297
+   macro avg       0.69      0.63      0.65     53297
+weighted avg       0.68      0.68      0.68     53297
+
+```
 
 ```
 
@@ -419,11 +492,36 @@ Project at the value of whislo
 
 ```
 
-- 60/40
+#### 60/40 split
 
 Please see [classification_report_60_40](commitcanvas_models/classification_reports/project/classification_report_60_40.csv) for more details about the individual projects such as the size of test set, train set and total set
 
+box and whisker plot:
+
 ![project_60_40](commitcanvas_models/classification_reports/boxplots/project_60_40.png)
+
+confusion matrix:
+
+![project_60_40](commitcanvas_models/classification_reports/project/matrix_all_projects_60_40.jpg)
+
+classification report:
+
+```
+
+              precision    recall  f1-score   support
+
+       chore       0.70      0.69      0.69     20134
+        docs       0.82      0.77      0.79     11683
+         fix       0.59      0.61      0.60     13648
+        feat       0.64      0.77      0.70     27238
+    refactor       0.56      0.31      0.40      7658
+        test       0.70      0.50      0.59      4914
+
+    accuracy                           0.67     85275
+   macro avg       0.67      0.61      0.63     85275
+weighted avg       0.67      0.67      0.66     85275
+
+```
 
 ```
 

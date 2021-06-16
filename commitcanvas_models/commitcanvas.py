@@ -8,6 +8,7 @@ import seaborn as sns
 import pingouin as pg
 import matplotlib.pyplot as plt
 from matplotlib.cbook import boxplot_stats
+from sklearn.metrics import classification_report
 # from commitcanvas_models.train_model.tokenizers import dummy
 # from commitcanvas_models.train_model.tokenizers import stem_tokenizer
 
@@ -55,14 +56,15 @@ def train(mode: str,  save_report: str, split: float = 0.25):
         raise typer.Exit()
 
     filtered_data = md.select_training_data()
-
+    # print(filtered_data)
+    # print(len(filtered_data.name.unique()))
     md.report(filtered_data,mode,split,save_report)
 
 # data/classification_reports/project/{}.csv
 # data/classification_reports/cross_project/prediction_output.csv
 
 @app.command()
-def report(data_path, save_report:str=None, save_plots:str=None):
+def report(data_path, save_report:str=None, project_plots:str=None, across_project_plots:str=None):
 
     data = pd.read_csv(data_path)
 
@@ -73,11 +75,15 @@ def report(data_path, save_report:str=None, save_plots:str=None):
 
         project_data = data[data["name"]==project]
 
-        report.append(statistics.classification_report(project_data,project))
+        report.append(statistics.commitcanvas_classification_report(project_data,project))
         # save confusion matrix for each project
-        if save_plots:
-            statistics.plot_confusion_matrix(project_data,save_plots,project)
+        if project_plots:
+            statistics.plot_confusion_matrix(project_data,project_plots,project)
 
+    if across_project_plots:
+        statistics.plot_confusion_matrix(data,across_project_plots,)
+
+    print(classification_report(data.commit_type, data.predicted, target_names=['chore', 'docs', 'fix', 'feat', 'refactor', 'test']))
 
     # classification report for each project
     reports = pd.DataFrame(report)
@@ -106,15 +112,15 @@ def boxplot(plot_data_path: str, save: str=None):
     sns.boxplot(data=plot_data[scores],color='grey')
     for score in scores:
         stats = boxplot_stats(plot_data[score])
-        mean = plot_data[round(plot_data[score],2) == round(stats[0]["mean"],2)]
+        median = plot_data[round(plot_data[score],2) == round(stats[0]["med"],2)]
         whishi = plot_data[plot_data[score] == stats[0]["whishi"]] 
         whislo = plot_data[plot_data[score] == stats[0]["whislo"]] 
         fliers =  plot_data[plot_data[score].isin(stats[0]["fliers"])]
 
         print("\nOverall boxplot stats for {}".format(score))
         print(stats)
-        print("\nProjects close to value of mean")
-        print(mean)
+        print("\nProjects close to value of median")
+        print(median)
         print("\nProject at the value of whishi")
         print(whishi)
         print("\nProject at the value of whislo")

@@ -27,7 +27,7 @@ the generated file will include weighted precision, recall, fscore, size of test
   - `save_report` path to the file where the report should be saved
   - `save_plots` create confusion matrices for each project and save them in the provided directory
 
-sample usage: `commitcanvas report classification_reports/project/raw_split_80_20.csv --save-report classification_reports/project/classification_report_80_20.csv --save-plots classification_reports/project/plots_80_20`
+sample usage: `commitcanvas report classification_reports/cross_project/raw_prediction_output.csv --save-report classification_reports/cross_project/classification_report.csv --across-project-plots classification_reports/cross_project/matrix_all_projects.jpg --project-plots classification_reports/cross_project/plots`
 
 ### getting the stats from classification reports
 
