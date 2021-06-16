@@ -8,7 +8,7 @@
   + [Classification report and confusion matrix](#Classification-report-and-confusion-matrix)
   + [Boxplot stats](#Boxplot-stats)
 * [Project experiment](#project-experiment)
-  + [Mann–Whitney U statistical test results](#Mann–Whitney-U-statistical-test-results-for-project-experiment)
+  + [Mann Whitney U statistical test results](#Mann-Whitney-U-statistical-test-results-for-project-experiment)
   + [Stats for each ratio](#Stats-for-each-ratio)
     + [project train/test ratio 80/20](#project-train/test-ratio-80/20)
     + [project train/test ratio 75/25](#project-train/test-ratio-75/25)
