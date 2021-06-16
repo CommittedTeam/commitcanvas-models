@@ -87,13 +87,21 @@ the repository should meet the following criteria
 #### selecting features
 
 commit_subject: tokenize the commit message subject, select alpha tokens that are not stopwords, do stemming. do countvectorizer, tfidf on commit subjet data
+
 num_files
-num_test_files,
+
+num_test_files
+
 test_files_ratio: ratio of test related files over total number of files modified
+
 unique_file_extensions: find the most unique words for each label
-num_unique_file_extensions: do countvectorizer, tfidf on unique file extensions.
+
+num_unique_file_extensions: do countvectorizer, tfidf on unique file extensions
+
 num_lines_added
+
 num_lines_removed
+
 num_lines_total
 
 threats to validity:
