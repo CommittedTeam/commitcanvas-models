@@ -74,14 +74,6 @@ MWU  1233.0  two-sided  0.167762  0.154321  0.42284
 
 ![cross_project](commitcanvas_models/classification_reports/cross_project/matrix_all_projects.jpg)
 
-
-
-### Boxplot stats
-
-Please see [classification_report](commitcanvas_models/classification_reports/cross_project/classification_report.csv) for more details about the individual projects such as the size of test set, train set and total set
-
-![cross_project](commitcanvas_models/classification_reports/boxplots/cross_project.png)
-
 ```
               precision    recall  f1-score   support
 
@@ -97,6 +89,12 @@ Please see [classification_report](commitcanvas_models/classification_reports/cr
 weighted avg       0.61      0.61      0.60    213192
 
 ```
+
+### Boxplot stats
+
+Please see [classification_report](commitcanvas_models/classification_reports/cross_project/classification_report.csv) for more details about the individual projects such as the size of test set, train set and total set
+
+![cross_project](commitcanvas_models/classification_reports/boxplots/cross_project.png)
 
 ```
 
