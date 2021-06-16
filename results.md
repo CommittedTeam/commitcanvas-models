@@ -10,10 +10,9 @@
 * [Project experiment](#project-experiment)
   + [Mann Whitney U statistical test results](#Mann-Whitney-U-statistical-test-results-for-project-experiment)
   + [Stats for each ratio](#Stats-for-each-ratio)
-    + [project train/test ratio 80/20](#project-train/test-ratio-80/20)
-    + [project train/test ratio 75/25](#project-train/test-ratio-75/25)
-    + [project train/test ratio 60/40](#project-train/test-ratio-60/40)
-
+    + [project ratio 80 and 20](#project-ratio-80-and-20)
+    + [project ratio 75 and 25](#project-ratio-75-and-25)
+    + [project ratio 60 and 40](#project-ratio-60-and-40)
 
 
 ## Tools and packages used for outputs
@@ -257,7 +256,7 @@ MWU  1596.0  two-sided  0.398187 -0.09465  0.547325
 
 ### Stats for each ratio
 
-### project train/test ratio 80/20
+### project ratio 80 and 20
 
 Please see [classification_report_80_20](commitcanvas_models/classification_reports/project/classification_report_80_20.csv) for more details about the individual projects such as the size of test set, train set and total set
 
@@ -391,7 +390,7 @@ Far outlier projects
 
 ```
 
-#### project train/test ratio 80/20
+#### project ratio 75 and 25
 
 Please see [classification_report_75_25](commitcanvas_models/classification_reports/project/classification_report_75_25.csv) for more details about the individual projects such as the size of test set, train set and total set
 
@@ -508,7 +507,7 @@ Project at the value of whislo
 
 ```
 
-#### project train/test ratio 80/20
+#### project ratio 60 and 40
 
 Please see [classification_report_60_40](commitcanvas_models/classification_reports/project/classification_report_60_40.csv) for more details about the individual projects such as the size of test set, train set and total set
 
