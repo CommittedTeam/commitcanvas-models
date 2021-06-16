@@ -1,10 +1,26 @@
-## Tools and packages used for these outputs
+## Table of contents
 
-### Mann–Whitney U statistical test results
+* [Tools and packages used for outputs](#Tools-and-packages-used-for-outputs)
+* [K-fold Cross project experiment](#K-fold-Cross-project-experiment)
+  + [Mann–Whitney U statistical test results](#Mann–Whitney-U-statistical-test-results)
+  + [Classification report and confusion matrix](#Classification-report-and-confusion-matrix)
+  + [Boxplot stats](#Boxplot-stats)
+* [Project experiment](#project-experiment)
+  + [Mann–Whitney U statistical test results](#Mann–Whitney-U-statistical-test-results-for-project-experiment)
+  + [Stats for each ratio](#Stats-for-each-ratio)
+    + [project train/test ratio 80/20](#project-train/test-ratio-80/20)
+    + [project train/test ratio 75/25](#project-train/test-ratio-75/25)
+    + [project train/test ratio 60/40](#project-train/test-ratio-60/40)
+
+
+
+## Tools and packages used for outputs
+
+### package for Mann–Whitney U statistical test
 
 https://pingouin-stats.org/generated/pingouin.mwu.html
 
-### Boxplots
+### package for boxplots
 
 [seaborn](https://seaborn.pydata.org/generated/seaborn.boxplot.html) for creating plots
 
@@ -12,7 +28,7 @@ https://pingouin-stats.org/generated/pingouin.mwu.html
 
 NOTE: the labels of the boxplots need to be finalized
 
-## Cross project
+## K-fold Cross project experiment
 
 ### Mann–Whitney U statistical test results
 - cross project vs project split 80/20
@@ -177,9 +193,9 @@ Project at the value of whislo
 [1 rows x 16 columns]
 
 ```
-## Project
+## Project experiment
 
-### Mann–Whitney U statistical test results
+### Mann–Whitney U statistical test results for project experiment
 
 - project 80/20 vs project 75/25
 
@@ -237,9 +253,9 @@ MWU  1596.0  two-sided  0.398187 -0.09465  0.547325
 
 ```
 
-### Project stats
+### Stats for each ratio
 
-### 80/20 split
+### project train/test ratio 80/20
 
 Please see [classification_report_80_20](commitcanvas_models/classification_reports/project/classification_report_80_20.csv) for more details about the individual projects such as the size of test set, train set and total set
 
@@ -373,7 +389,7 @@ Far outlier projects
 
 ```
 
-#### 75/25 split
+#### project train/test ratio 80/20
 
 Please see [classification_report_75_25](commitcanvas_models/classification_reports/project/classification_report_75_25.csv) for more details about the individual projects such as the size of test set, train set and total set
 
@@ -490,7 +506,7 @@ Project at the value of whislo
 
 ```
 
-#### 60/40 split
+#### project train/test ratio 80/20
 
 Please see [classification_report_60_40](commitcanvas_models/classification_reports/project/classification_report_60_40.csv) for more details about the individual projects such as the size of test set, train set and total set
 
