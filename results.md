@@ -107,6 +107,21 @@ weighted avg       0.61      0.61      0.60    213192
 
 ```
 
+detailed support:
+
+```
+
+chore_total       50087
+docs_total        27454
+feat_total        37361
+fix_total         68051
+refactor_total    18544
+test_total        11695
+
+Total count of commits in total set:  213192
+
+```
+
 ### Boxplot stats
 
 Please see [classification_report](commitcanvas_models/classification_reports/cross_project/classification_report.csv) for more details about the individual projects such as the size of test set, train set and total set
@@ -287,6 +302,38 @@ weighted avg       0.69      0.68      0.68     42636
 
 ```
 
+detailed support
+
+```
+
+chore_total       50087
+docs_total        27454
+feat_total        37361
+fix_total         68051
+refactor_total    18544
+test_total        11695
+
+Total count of commits in total set:  213192 
+
+chore_train       39645
+docs_train        21524
+feat_train        30630
+fix_train         54826
+refactor_train    14604
+test_train         9327
+
+Total count of commits in train set:  170556 
+
+chore_test       10442
+docs_test         5930
+feat_test         6731
+fix_test         13225
+refactor_test     3940
+test_test         2368
+
+Total count of commits in test set:  42636
+```
+
 ```
 
 Overall boxplot stats for precision:
@@ -423,6 +470,39 @@ weighted avg       0.68      0.68      0.68     53297
 
 ```
 
+detailed support:
+
+chore_total       50087
+docs_total        27454
+feat_total        37361
+fix_total         68051
+refactor_total    18544
+test_total        11695
+
+Total count of commits in total set:  213192 
+
+chore_train       37135
+docs_train        20105
+feat_train        28984
+fix_train         51412
+refactor_train    13602
+test_train         8657
+
+Total count of commits in train set:  159895 
+
+chore_test       12952
+docs_test         7349
+feat_test         8377
+fix_test         16639
+refactor_test     4942
+test_test         3038
+
+Total count of commits in test set:  53297 
+
+```
+
+```
+
 Overall boxplot stats for precision
 [{'mean': 0.6874980597869412, 'iqr': 0.101391283492001, 'cilo': 0.6638729151390202, 'cihi': 0.707197398139732, 'whishi': 0.846132881621394, 'whislo': 0.5387040378801586, 'fliers': array([0.47283491]), 'q1': 0.6387375951191004, 'med': 0.6855351566393761, 'q3': 0.7401288786111014}]
 
@@ -535,6 +615,39 @@ classification report:
     accuracy                           0.67     85275
    macro avg       0.67      0.61      0.63     85275
 weighted avg       0.67      0.67      0.66     85275
+
+```
+
+detailed support
+
+```
+
+chore_total       50087
+docs_total        27454
+feat_total        37361
+fix_total         68051
+refactor_total    18544
+test_total        11695
+
+Total count of commits in total set:  213192 
+
+chore_train       29953
+docs_train        15771
+feat_train        23713
+fix_train         40813
+refactor_train    10886
+test_train         6781
+
+Total count of commits in train set:  127917 
+
+chore_test       20134
+docs_test        11683
+feat_test        13648
+fix_test         27238
+refactor_test     7658
+test_test         4914
+
+Total count of commits in test set:  85275
 
 ```
 

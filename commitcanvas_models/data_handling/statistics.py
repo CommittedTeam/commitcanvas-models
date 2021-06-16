@@ -74,10 +74,18 @@ def get_training_set_count(test_data):
 # print(preped)
 # print(len(preped.name.unique()))
 
+def total_counts_commits(path):
+    columns_sufixes = ["total","train","test"]
+
+    project_data = pd.read_csv(path,index_col=0)
+
+    for i in columns_sufixes:
+
+        selected_columns = project_data.filter(regex='{}$'.format(i),axis=1)
+        total = selected_columns.sum()
+        print(total)
+        print("\nTotal count of commits in {} set: ".format(i),total.sum(),"\n")
 
 
 
-
-
-
-
+total_counts_commits("../classification_reports/cross_project/classification_report.csv")
