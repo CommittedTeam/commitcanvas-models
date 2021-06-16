@@ -1,8 +1,10 @@
+# Results analysis
+
 ## Table of contents
 
 * [Tools and packages used for outputs](#Tools-and-packages-used-for-outputs)
-* [K-fold Cross project experiment](#K-fold-Cross-project-experiment)
-  + [Mann–Whitney U statistical test results](#Mann–Whitney-U-statistical-test-results)
+* [K fold cross project experiment](#K-fold-cross-project-experiment)
+  + [Mann Whitney U statistical test results](#Mann-Whitney-U-statistical-test-results)
   + [Classification report and confusion matrix](#Classification-report-and-confusion-matrix)
   + [Boxplot stats](#Boxplot-stats)
 * [Project experiment](#project-experiment)
@@ -16,11 +18,11 @@
 
 ## Tools and packages used for outputs
 
-### package for Mann–Whitney U statistical test
+package for Mann–Whitney U statistical test:
 
 https://pingouin-stats.org/generated/pingouin.mwu.html
 
-### package for boxplots
+package for boxplots:
 
 [seaborn](https://seaborn.pydata.org/generated/seaborn.boxplot.html) for creating plots
 
@@ -28,9 +30,9 @@ https://pingouin-stats.org/generated/pingouin.mwu.html
 
 NOTE: the labels of the boxplots need to be finalized
 
-## K-fold Cross project experiment
+## K fold cross project experiment
 
-### Mann–Whitney U statistical test results
+### Mann Whitney U statistical test results
 - cross project vs project split 80/20
 
 ```
@@ -195,7 +197,7 @@ Project at the value of whislo
 ```
 ## Project experiment
 
-### Mann–Whitney U statistical test results for project experiment
+### Mann Whitney U statistical test results for project experiment
 
 - project 80/20 vs project 75/25
 
