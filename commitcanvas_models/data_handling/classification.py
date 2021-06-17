@@ -69,22 +69,34 @@ def print_classification_report(true,predicted):
 
 
 # print classification report for the selected projects
+print("Project-specific runs that Teona performed:")
 for name in selected_project_names:
     project_specific_data = raw_data[raw_data["name"] == name]
     print("\nproject name: {}".format(name))
+    print_classification_report(project_specific_data.commit_type,project_specific_data.predicted)
 
 
 # print classification report for every one of the projects
+print()
+print("All project runs that to calculate macro-averages:")
 for name in all_project_names:
     project_specific_data = raw_data[raw_data["name"] == name]
     print("\nproject name: {}".format(name))
-
     print_classification_report(project_specific_data.commit_type,project_specific_data.predicted)
 
 
 # print classification report for the full data (without splitting based on project name)
-print("\nreport for full data")
+print("\nreport for selected-projects full data")
 print_classification_report(selected_projects.commit_type,selected_projects.predicted)
 
+# print classification report for the full data (without splitting based on project name)
+print("\nreport for all-projects full data MICRO-AVERAGES")
+print_classification_report(all_projects.commit_type,all_projects.predicted)
+
+print("\nreport for all-projects full data MACRO-AVERAGES")
 macro_mean_precision = sum(all_computed_precision) / len(all_computed_precision)
+macro_mean_recall = sum(all_computed_recall) / len(all_computed_recall)
+macro_mean_fscore = sum(all_computed_fscore) / len(all_computed_fscore)
 print(f"Macro-mean precision score: {macro_mean_precision}")
+print(f"Macro-mean recall score: {macro_mean_recall}")
+print(f"Macro-mean f-score: {macro_mean_fscore}")
