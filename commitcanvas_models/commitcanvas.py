@@ -1,4 +1,5 @@
 """Training and evaluating the classification model."""
+from seaborn.palettes import color_palette
 import typer
 from commitcanvas_models.train_model import model as md
 from commitcanvas_models.data_handling import helpers
@@ -64,33 +65,36 @@ def train(mode: str,  save_report: str, split: float = 0.25):
 # data/classification_reports/cross_project/prediction_output.csv
 
 @app.command()
-def report(data_path, save_report:str=None, project_plots:str=None, across_project_plots:str=None):
+def report(data_path, save_report:str=None, project_plots:str=None, across_project_plots:str=None, plot_title:str=None):
 
     data = pd.read_csv(data_path)
 
     projects = data.name.unique()
 
     report = []
-    for project in projects:
+    if project_plots:
+        for project in projects:
 
-        project_data = data[data["name"]==project]
+            project_data = data[data["name"]==project]
 
-        report.append(statistics.commitcanvas_classification_report(project_data,project))
-        # save confusion matrix for each project
-        if project_plots:
-            statistics.plot_confusion_matrix(project_data,project_plots,project)
+            report.append(statistics.commitcanvas_classification_report(project_data,project))
+            # save confusion matrix for each project
+            if project_plots:
+                statistics.plot_confusion_matrix(project_data,project_plots,project)
+
+            # classification report for each project
+        reports = pd.DataFrame(report)
+        combined = reports.merge(statistics.get_training_set_count(data))
+        print(combined)
+        if save_report:
+            combined.to_csv(save_report)
 
     if across_project_plots:
-        statistics.plot_confusion_matrix(data,across_project_plots,)
+        statistics.plot_confusion_matrix(data,across_project_plots,title = plot_title)
 
     print(classification_report(data.commit_type, data.predicted, target_names=['chore', 'docs', 'fix', 'feat', 'refactor', 'test']))
 
-    # classification report for each project
-    reports = pd.DataFrame(report)
-    combined = reports.merge(statistics.get_training_set_count(data))
-    print(combined)
-    if save_report:
-        combined.to_csv(save_report)
+
 
 
 @app.command()
@@ -105,22 +109,29 @@ def mwu(path1: str, path2: str):
 
 # save "../classification_reports/boxplots/cross_project"
 @app.command()
-def boxplot(plot_data_path: str, save: str=None):
+def boxplot(plot_data_path: str, save: str=None, name: str=None):
     # make sure to fix the plot labels
     plot_data = pd.read_csv(plot_data_path,index_col=0)
     scores = ["precision","recall","fscore"]
-    sns.boxplot(data=plot_data[scores],color='grey')
+    meanlineprops = dict(linestyle='--', color='black')
+    medianlineprops = dict(linewidth=0)
+    box_plot = sns.boxplot(data=plot_data[scores],color='grey',meanline=True, showmeans=True, meanprops=meanlineprops,medianprops=medianlineprops)
+    plt.ylim(0.3, 0.9)
+    plt.yticks(fontsize=14)
+    plt.xticks([0,1,2], ["Precision","Recall","F-Score"], fontsize=14)
+    
+
     for score in scores:
         stats = boxplot_stats(plot_data[score])
-        median = plot_data[round(plot_data[score],2) == round(stats[0]["med"],2)]
+        mean = plot_data[round(plot_data[score],2) == round(stats[0]["mean"],2)]
         whishi = plot_data[plot_data[score] == stats[0]["whishi"]] 
         whislo = plot_data[plot_data[score] == stats[0]["whislo"]] 
         fliers =  plot_data[plot_data[score].isin(stats[0]["fliers"])]
 
         print("\nOverall boxplot stats for {}".format(score))
         print(stats)
-        print("\nProjects close to value of median")
-        print(median)
+        print("\nProjects close to value of mean")
+        print(mean)
         print("\nProject at the value of whishi")
         print(whishi)
         print("\nProject at the value of whislo")
@@ -129,6 +140,21 @@ def boxplot(plot_data_path: str, save: str=None):
             print("\nFar outlier projects")
             print(fliers)
         print("\n")
+
+        x_pos = scores.index(score)
+        mean_val = round(stats[0]['mean'],2)
+        plt.text(
+        x_pos, 
+        mean_val, 
+        f'{mean_val}', 
+        ha='center', 
+        va='center', 
+        fontweight='bold', 
+        size=10,
+        color='white',
+        bbox=dict(facecolor='#445A64'))
+
+    plt.title(name,fontsize=16)
 
     if save:
         plt.savefig(save)

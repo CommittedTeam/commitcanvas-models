@@ -133,7 +133,7 @@ Please see [classification_report](commitcanvas_models/classification_reports/cr
 Overall boxplot stats for precision
 [{'mean': 0.6643824420212243, 'iqr': 0.0877045880012759, 'cilo': 0.6436373091562423, 'cihi': 0.6811134688524106, 'whishi': 0.7860460812834456, 'whislo': 0.5533500322831186, 'fliers': array([], dtype=float64), 'q1': 0.6189582442452561, 'med': 0.6623753890043265, 'q3': 0.706662832246532}]
 
-Projects close to value of median
+Projects close to value of mean
                        name  precision    recall  ...  fix_test  refactor_test  test_test
 16  material-components-web   0.664472  0.654463  ...       912            212        150
 21              angular-cli   0.660279  0.620437  ...      2133            773        508
@@ -159,7 +159,7 @@ Project at the value of whislo
 Overall boxplot stats for recall
 [{'mean': 0.6197018774100682, 'iqr': 0.10484613485488481, 'cilo': 0.5967510648027136, 'cihi': 0.6415518053670556, 'whishi': 0.7537878787878788, 'whislo': 0.4522008253094911, 'fliers': array([], dtype=float64), 'q1': 0.574678375828996, 'med': 0.6191514350848846, 'q3': 0.6795245106838808}]
 
-Projects close to value of median
+Projects close to value of mean
                 name  precision    recall    fscore  ...  feat_test  fix_test  refactor_test  test_test
 1    ionic-framework   0.646184  0.617866  0.609424  ...        716      2820            665        520
 19     loopback-next   0.708908  0.624796  0.648031  ...        831       764            144        104
@@ -187,7 +187,7 @@ Project at the value of whislo
 Overall boxplot stats for fscore
 [{'mean': 0.6140055812703538, 'iqr': 0.09280962603112752, 'cilo': 0.5932224608177126, 'cihi': 0.6328800026379147, 'whishi': 0.7642624581292277, 'whislo': 0.4400000913544323, 'fliers': array([], dtype=float64), 'q1': 0.5698440240035909, 'med': 0.6130512317278136, 'q3': 0.6626536500347184}]
 
-Projects close to value of median
+Projects close to value of mean
                 name  precision    recall    fscore  ...  feat_test  fix_test  refactor_test  test_test
 1    ionic-framework   0.646184  0.617866  0.609424  ...        716      2820            665        520
 10  instantsearch.js   0.651566  0.607637  0.608411  ...        433       606             65         95
@@ -207,6 +207,7 @@ Project at the value of whislo
 40  super-productivity   0.709187  0.452201    0.44  ...       3393      1206            626        101
 
 [1 rows x 16 columns]
+
 
 ```
 ## Project experiment
@@ -336,11 +337,10 @@ Total count of commits in test set:  42636
 
 ```
 
-Overall boxplot stats for precision:
-
+Overall boxplot stats for precision
 [{'mean': 0.6967467811409221, 'iqr': 0.08302081878637113, 'cilo': 0.6798036376315896, 'cihi': 0.7152784233166832, 'whishi': 0.8499977479220094, 'whislo': 0.5444600808304615, 'fliers': array([0.48644421, 0.52120298]), 'q1': 0.6585506351182077, 'med': 0.6975410304741364, 'q3': 0.7415714539045788}]
 
-Projects close to value of median
+Projects close to value of mean
          name  precision    recall    fscore  ...  feat_test  fix_test  refactor_test  test_test
 35  webiny-js   0.702621  0.710410  0.690045  ...        273       812             58         90
 53       taro   0.704689  0.630303  0.649165  ...        147       634             51         11
@@ -371,7 +371,7 @@ Far outlier projects
 Overall boxplot stats for recall
 [{'mean': 0.6726836867098982, 'iqr': 0.08891262246525411, 'cilo': 0.6496211976680732, 'cihi': 0.6876135503425367, 'whishi': 0.8467824310520939, 'whislo': 0.5125628140703518, 'fliers': array([0.47962382]), 'q1': 0.630622009569378, 'med': 0.668617374005305, 'q3': 0.7195346320346321}]
 
-Projects close to value of median
+Projects close to value of mean
                 name  precision    recall    fscore  ...  feat_test  fix_test  refactor_test  test_test
 0          sequelize   0.668048  0.668966  0.644435  ...         22       116             41         23
 10  instantsearch.js   0.633515  0.666667  0.646173  ...        137       134             26         19
@@ -402,18 +402,12 @@ Far outlier projects
 Overall boxplot stats for fscore
 [{'mean': 0.6590521285666496, 'iqr': 0.09228130236068166, 'cilo': 0.6325019411071899, 'cihi': 0.6719337302878083, 'whishi': 0.8446281303081813, 'whislo': 0.4783759007216093, 'fliers': array([0.46638805, 0.46258636]), 'q1': 0.6153682565999795, 'med': 0.6522178356974991, 'q3': 0.7076495589606612}]
 
-Projects close to value of median
-                name  precision    recall    fscore  ...  feat_test  fix_test  refactor_test  test_test
-3               vite   0.658398  0.653951  0.650501  ...         42       168             18          9
-9             gatsby   0.660502  0.652096  0.651631  ...        206       573             17         16
-10  instantsearch.js   0.633515  0.666667  0.646173  ...        137       134             26         19
-28        components   0.754021  0.683039  0.652804  ...        197       619            183         62
-31              pnpm   0.709820  0.641161  0.653925  ...         97       403             67        120
-51              jina   0.672981  0.643072  0.650254  ...         95       169             92         65
-52          material   0.682166  0.685801  0.649135  ...         60       355             22          6
-53              taro   0.704689  0.630303  0.649165  ...        147       634             51         11
+Projects close to value of mean
+        name  precision    recall    fscore  ...  feat_test  fix_test  refactor_test  test_test
+8    rest.js   0.677576  0.640625  0.655833  ...         35        48             12         39
+20  renovate   0.690731  0.679682  0.660621  ...        290       517            247         27
 
-[8 rows x 22 columns]
+[2 rows x 22 columns]
 
 Project at the value of whishi
              name  precision    recall    fscore  ...  feat_test  fix_test  refactor_test  test_test
@@ -433,6 +427,7 @@ Far outlier projects
 37     chakra-ui   0.486444  0.512563  0.462586  ...        120       182             33         14
 
 [2 rows x 22 columns]
+
 
 
 ```
@@ -506,7 +501,7 @@ Total count of commits in test set:  53297
 Overall boxplot stats for precision
 [{'mean': 0.6874980597869412, 'iqr': 0.101391283492001, 'cilo': 0.6638729151390202, 'cihi': 0.707197398139732, 'whishi': 0.846132881621394, 'whislo': 0.5387040378801586, 'fliers': array([0.47283491]), 'q1': 0.6387375951191004, 'med': 0.6855351566393761, 'q3': 0.7401288786111014}]
 
-Projects close to value of median
+Projects close to value of mean
                     name  precision    recall  ...  fix_test  refactor_test  test_test
 8                rest.js   0.691869  0.616667  ...        52             15         43
 9                 gatsby   0.687122  0.668424  ...       715             35         20
@@ -538,7 +533,7 @@ Far outlier projects
 Overall boxplot stats for recall
 [{'mean': 0.6677507440656335, 'iqr': 0.09450401376286988, 'cilo': 0.6473543438426841, 'cihi': 0.6877358973328469, 'whishi': 0.8382352941176471, 'whislo': 0.4761904761904761, 'fliers': array([], dtype=float64), 'q1': 0.6179366685945633, 'med': 0.6675451205877655, 'q3': 0.7124406823574332}]
 
-Projects close to value of median
+Projects close to value of mean
                     name  precision    recall  ...  fix_test  refactor_test  test_test
 3                   vite   0.666478  0.666667  ...       218             25         11
 9                 gatsby   0.687122  0.668424  ...       715             35         20
@@ -564,7 +559,7 @@ Project at the value of whislo
 Overall boxplot stats for fscore
 [{'mean': 0.6511090296462904, 'iqr': 0.11654254785934115, 'cilo': 0.6257214368531346, 'cihi': 0.6755200532597413, 'whishi': 0.8334896182757181, 'whislo': 0.4462423902793672, 'fliers': array([], dtype=float64), 'q1': 0.5904016824954066, 'med': 0.650620745056438, 'q3': 0.7069442303547477}]
 
-Projects close to value of median
+Projects close to value of mean
                   name  precision    recall  ...  fix_test  refactor_test  test_test
 8              rest.js   0.691869  0.616667  ...        52             15         43
 40  super-productivity   0.643831  0.684319  ...       313            172         92
@@ -656,7 +651,7 @@ Total count of commits in test set:  85275
 Overall boxplot stats for precision
 [{'mean': 0.6719650274624542, 'iqr': 0.10007498016974092, 'cilo': 0.6446849885236026, 'cihi': 0.6874470152761545, 'whishi': 0.8266500447980617, 'whislo': 0.5131043622532878, 'fliers': array([0.47816699]), 'q1': 0.6300341333851517, 'med': 0.6660660018998785, 'q3': 0.7301091135548926}]
 
-Projects close to value of median
+Projects close to value of mean
                   name  precision    recall  ...  fix_test  refactor_test  test_test
 8              rest.js   0.673556  0.531250  ...        78             29         74
 22                deno   0.672821  0.641388  ...       287            120         26
@@ -687,7 +682,7 @@ Far outlier projects
 Overall boxplot stats for recall
 [{'mean': 0.6530762020312287, 'iqr': 0.10678781908457413, 'cilo': 0.6301363171131406, 'cihi': 0.6757667391106855, 'whishi': 0.8158347676419966, 'whislo': 0.5037481259370314, 'fliers': array([], dtype=float64), 'q1': 0.6057500133686264, 'med': 0.652951528111913, 'q3': 0.7125378324532006}]
 
-Projects close to value of median
+Projects close to value of mean
                 name  precision    recall    fscore  ...  feat_test  fix_test  refactor_test  test_test
 0          sequelize   0.662484  0.653448  0.636258  ...         51       242             59         28
 41  electron-builder   0.639938  0.652455  0.624618  ...        189       400             23         18
@@ -711,13 +706,11 @@ Project at the value of whislo
 Overall boxplot stats for fscore
 [{'mean': 0.6354797465713554, 'iqr': 0.11423187311534655, 'cilo': 0.6019060070707232, 'cihi': 0.6507172724426202, 'whishi': 0.8146301562109642, 'whislo': 0.4504725226004722, 'fliers': array([], dtype=float64), 'q1': 0.5829110464646108, 'med': 0.6263116397566717, 'q3': 0.6971429195799573}]
 
-Projects close to value of median
-    name  precision    recall    fscore  ...  feat_test  fix_test  refactor_test  test_test
-3   vite   0.653316  0.643537  0.626732  ...         94       348             53         14
-31  pnpm   0.678346  0.611697  0.626214  ...        232       829            195        183
-53  taro   0.644537  0.635223  0.626409  ...        389      1189            156         27
+Projects close to value of mean
+        name  precision    recall    fscore  ...  feat_test  fix_test  refactor_test  test_test
+0  sequelize   0.662484  0.653448  0.636258  ...         51       242             59         28
 
-[3 rows x 22 columns]
+[1 rows x 22 columns]
 
 Project at the value of whishi
       name  precision    recall   fscore  ...  feat_test  fix_test  refactor_test  test_test

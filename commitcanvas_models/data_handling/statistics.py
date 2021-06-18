@@ -31,21 +31,23 @@ def commitcanvas_classification_report(data,project):
 
     return data
 
-def plot_confusion_matrix(data,save_plots,name=None):
+def plot_confusion_matrix(data,save_plots,name=None,title=None):
   # this feature doens't work yet
   true = data.commit_type
   predicted = data.predicted
 
   labels = ['chore', 'docs', 'fix', 'feat', 'refactor', 'test']
-  cm = confusion_matrix(true, predicted, normalize='true', labels=labels)
+  cm = confusion_matrix(true, predicted, labels=labels)
 
   disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=labels)
-  disp.plot(cmap='Greys')
+  disp.plot(cmap='Greys',values_format="d")
 
   if name:
       plt.savefig("{}/{}.jpg".format(save_plots,name))
-  if not name:
+  else:
+      plt.title(title,fontsize=14)
       plt.savefig(save_plots)
+      
       
 def get_training_set_count(test_data):
 
@@ -66,14 +68,6 @@ def get_training_set_count(test_data):
     return combined
 
 
-
-
-# angular_repos = pd.read_feather("../data/training_data/angular_data.ftr")
-# #selected = angular_repos[angular_repos["commit_type"].isin(["fix","feat","chore","docs","refactor","test"])]
-# preped = md.data_prep(angular_repos,"fix,feat,chore,docs,refactor,test")
-# print(preped)
-# print(len(preped.name.unique()))
-
 def total_counts_commits(path):
     columns_sufixes = ["total","train","test"]
 
@@ -85,7 +79,3 @@ def total_counts_commits(path):
         total = selected_columns.sum()
         print(total)
         print("\nTotal count of commits in {} set: ".format(i),total.sum(),"\n")
-
-
-
-total_counts_commits("../classification_reports/cross_project/classification_report.csv")
