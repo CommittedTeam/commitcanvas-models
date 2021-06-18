@@ -1,420 +1,420 @@
 *** Total number of project: 54
-*** All projects: {'reaction', 'lerna', 'taro', 'angular.js', 'rest.js', 'Semantic-UI-React', 'serenity-js', 'axe-core', 'fxa', 'node-mongodb-native', 'js-ipfs', 'pgjdbc', 'components', 'angular-cli', 'camunda-bpm-platform', 'chakra-ui', 'material-components-web', 'ant-design', 'G2', 'stryker', 'RSSHub', 'loopback-next', 'electron-builder', 'sequelize', 'stencil', 'vee-validate', 'pnpm', 'superset', 'vuetify', 'karma', 'goreleaser', 'angular', 'jina', 'commitlint', 'serverless', 'vant', 'influxdb', 'webiny-js', 'material', 'ionic-framework', 'deno', 'zeebe', 'gatsby', 'renovate', 'verdaccio', 'vite', 'vue-cli', 'ng-bootstrap', 'aks-engine', 'vue-test-utils', 'instantsearch.js', 'rxjs', 'element3', 'super-productivity'}
+*** All projects: {'verdaccio', 'loopback-next', 'vue-test-utils', 'pnpm', 'material-components-web', 'Semantic-UI-React', 'pgjdbc', 'material', 'deno', 'ant-design', 'RSSHub', 'goreleaser', 'camunda-bpm-platform', 'karma', 'jina', 'vuetify', 'superset', 'reaction', 'fxa', 'renovate', 'vee-validate', 'node-mongodb-native', 'serenity-js', 'vue-cli', 'js-ipfs', 'angular.js', 'electron-builder', 'components', 'vite', 'webiny-js', 'instantsearch.js', 'commitlint', 'gatsby', 'axe-core', 'vant', 'ionic-framework', 'stencil', 'aks-engine', 'angular-cli', 'G2', 'chakra-ui', 'taro', 'element3', 'stryker', 'angular', 'influxdb', 'lerna', 'sequelize', 'zeebe', 'rest.js', 'super-productivity', 'serverless', 'ng-bootstrap', 'rxjs'}
 
 *** Total number of selected projects: 2
-*** Selected project names: {'sequelize', 'angular-cli'}
+*** Selected project names: {'angular-cli', 'sequelize'}
 
 Project-specific runs that Teona performed:
 
-project name: sequelize
-My calculated precision:  0.651754102503827
-My calculated recall:  0.6541824997493028
-Scikit precision:  0.651754102503827
-Scikit recall 0.6541824997493028
-Scikit fscore 0.6459166742995125
-
 project name: angular-cli
 My calculated precision:  0.6374278576225013
 My calculated recall:  0.5719886217161827
-Scikit precision:  0.6374278576225014
-Scikit recall 0.5719886217161828
-Scikit fscore 0.5758907799896883
+Scikit precision:  0.6602789793129668
+Scikit recall 0.620436546262314
+Scikit fscore 0.6170781144909239
+
+project name: sequelize
+My calculated precision:  0.651754102503827
+My calculated recall:  0.6541824997493028
+Scikit precision:  0.7365805674776877
+Scikit recall 0.7139903514817367
+Scikit fscore 0.7195429247730152
 
 All project runs that to calculate macro-averages:
-
-project name: reaction
-My calculated precision:  0.5476208925736371
-My calculated recall:  0.5265513782662047
-Scikit precision:  0.5476208925736371
-Scikit recall 0.5265513782662047
-Scikit fscore 0.492577418146034
-
-project name: lerna
-My calculated precision:  0.6069482028045049
-My calculated recall:  0.6089342642278287
-Scikit precision:  0.6069482028045049
-Scikit recall 0.6089342642278287
-Scikit fscore 0.591586634469497
-
-project name: taro
-My calculated precision:  0.514743298804151
-My calculated recall:  0.5278064689852703
-Scikit precision:  0.514743298804151
-Scikit recall 0.5278064689852703
-Scikit fscore 0.5143433385608868
-
-project name: angular.js
-My calculated precision:  0.6062193948663628
-My calculated recall:  0.5033160650976619
-Scikit precision:  0.6062193948663628
-Scikit recall 0.5033160650976619
-Scikit fscore 0.5086909592634209
-
-project name: rest.js
-My calculated precision:  0.5791097791097791
-My calculated recall:  0.5097182228362015
-Scikit precision:  0.5791097791097791
-Scikit recall 0.5097182228362015
-Scikit fscore 0.5033904675228081
-
-project name: Semantic-UI-React
-My calculated precision:  0.6338052877351741
-My calculated recall:  0.6399239655170573
-Scikit precision:  0.6338052877351741
-Scikit recall 0.6399239655170573
-Scikit fscore 0.6206316481686298
-
-project name: serenity-js
-My calculated precision:  0.5251675254124375
-My calculated recall:  0.4688740534598285
-Scikit precision:  0.5251675254124375
-Scikit recall 0.4688740534598285
-Scikit fscore 0.4696495443389126
-
-project name: axe-core
-My calculated precision:  0.6389058557220867
-My calculated recall:  0.6357416929452739
-Scikit precision:  0.6389058557220867
-Scikit recall 0.6357416929452739
-Scikit fscore 0.6307549007638862
-
-project name: fxa
-My calculated precision:  0.4179065662087522
-My calculated recall:  0.5755426791645081
-Scikit precision:  0.4179065662087523
-Scikit recall 0.5755426791645081
-Scikit fscore 0.3917558156961252
-
-project name: node-mongodb-native
-My calculated precision:  0.6687659456318142
-My calculated recall:  0.5829701075939541
-Scikit precision:  0.6687659456318142
-Scikit recall 0.5829701075939541
-Scikit fscore 0.5788998871241523
-
-project name: js-ipfs
-My calculated precision:  0.5700300305593725
-My calculated recall:  0.5827584966448959
-Scikit precision:  0.5700300305593725
-Scikit recall 0.5827584966448959
-Scikit fscore 0.5667880231600136
-
-project name: pgjdbc
-My calculated precision:  0.7202385293432788
-My calculated recall:  0.4557463030012556
-Scikit precision:  0.720238529343279
-Scikit recall 0.4557463030012556
-Scikit fscore 0.44251592255828526
-
-project name: components
-My calculated precision:  0.6138580346648755
-My calculated recall:  0.5482045755828987
-Scikit precision:  0.6138580346648755
-Scikit recall 0.5482045755828987
-Scikit fscore 0.5553367121671969
-
-project name: angular-cli
-My calculated precision:  0.6374278576225013
-My calculated recall:  0.5719886217161827
-Scikit precision:  0.6374278576225014
-Scikit recall 0.5719886217161828
-Scikit fscore 0.5758907799896883
-
-project name: camunda-bpm-platform
-My calculated precision:  0.43829079537246446
-My calculated recall:  0.44477753675600235
-Scikit precision:  0.4382907953724644
-Scikit recall 0.44477753675600235
-Scikit fscore 0.4118828305962636
-
-project name: chakra-ui
-My calculated precision:  0.4493183832660998
-My calculated recall:  0.5185436429046483
-Scikit precision:  0.4493183832660998
-Scikit recall 0.5185436429046483
-Scikit fscore 0.44828157105868316
-
-project name: material-components-web
-My calculated precision:  0.6286265408642638
-My calculated recall:  0.6058641991166608
-Scikit precision:  0.6286265408642637
-Scikit recall 0.6058641991166608
-Scikit fscore 0.6076315157209513
-
-project name: ant-design
-My calculated precision:  0.6924007783286678
-My calculated recall:  0.6105450654386763
-Scikit precision:  0.6924007783286678
-Scikit recall 0.6105450654386763
-Scikit fscore 0.6344957540672328
-
-project name: G2
-My calculated precision:  0.5831426242990448
-My calculated recall:  0.6222067823470828
-Scikit precision:  0.5831426242990448
-Scikit recall 0.6222067823470828
-Scikit fscore 0.5804789204390405
-
-project name: stryker
-My calculated precision:  0.6173352456707061
-My calculated recall:  0.5931858217461933
-Scikit precision:  0.6173352456707061
-Scikit recall 0.5931858217461933
-Scikit fscore 0.5977747135337247
-
-project name: RSSHub
-My calculated precision:  0.584215399121252
-My calculated recall:  0.6061814685832779
-Scikit precision:  0.584215399121252
-Scikit recall 0.6061814685832779
-Scikit fscore 0.5778795385292659
-
-project name: loopback-next
-My calculated precision:  0.5553909222715421
-My calculated recall:  0.592712702478299
-Scikit precision:  0.5553909222715421
-Scikit recall 0.592712702478299
-Scikit fscore 0.5531402077436142
-
-project name: electron-builder
-My calculated precision:  0.6339131148417682
-My calculated recall:  0.5461610558770843
-Scikit precision:  0.6339131148417682
-Scikit recall 0.5461610558770843
-Scikit fscore 0.5596481032575608
-
-project name: sequelize
-My calculated precision:  0.651754102503827
-My calculated recall:  0.6541824997493028
-Scikit precision:  0.651754102503827
-Scikit recall 0.6541824997493028
-Scikit fscore 0.6459166742995125
-
-project name: stencil
-My calculated precision:  0.5314727653077305
-My calculated recall:  0.5731335985256614
-Scikit precision:  0.5314727653077305
-Scikit recall 0.5731335985256614
-Scikit fscore 0.5375940282451078
-
-project name: vee-validate
-My calculated precision:  0.7146401164033179
-My calculated recall:  0.6870697949443524
-Scikit precision:  0.7146401164033179
-Scikit recall 0.6870697949443524
-Scikit fscore 0.6839272962732478
-
-project name: pnpm
-My calculated precision:  0.7065625983265434
-My calculated recall:  0.596162632113841
-Scikit precision:  0.7065625983265434
-Scikit recall 0.596162632113841
-Scikit fscore 0.6317778538077886
-
-project name: superset
-My calculated precision:  0.6059843741367109
-My calculated recall:  0.5472664746939743
-Scikit precision:  0.6059843741367109
-Scikit recall 0.5472664746939743
-Scikit fscore 0.5689847652906658
-
-project name: vuetify
-My calculated precision:  0.5893889751182173
-My calculated recall:  0.5567770401054987
-Scikit precision:  0.5893889751182173
-Scikit recall 0.5567770401054987
-Scikit fscore 0.52618778197633
-
-project name: karma
-My calculated precision:  0.6978568263073335
-My calculated recall:  0.6442137938605144
-Scikit precision:  0.6978568263073336
-Scikit recall 0.6442137938605144
-Scikit fscore 0.656142108842995
-
-project name: goreleaser
-My calculated precision:  0.6616348295728954
-My calculated recall:  0.5611205602502761
-Scikit precision:  0.6616348295728954
-Scikit recall 0.5611205602502761
-Scikit fscore 0.5650319555921001
-
-project name: angular
-My calculated precision:  0.6039177230255034
-My calculated recall:  0.5157396115240876
-Scikit precision:  0.6039177230255034
-Scikit recall 0.5157396115240876
-Scikit fscore 0.5185052078560978
-
-project name: jina
-My calculated precision:  0.5909623877512226
-My calculated recall:  0.5051370400138306
-Scikit precision:  0.5909623877512225
-Scikit recall 0.5051370400138306
-Scikit fscore 0.5064449388892193
-
-project name: commitlint
-My calculated precision:  0.7669608539215839
-My calculated recall:  0.6712392900408869
-Scikit precision:  0.7669608539215839
-Scikit recall 0.6712392900408869
-Scikit fscore 0.6862644635228142
-
-project name: serverless
-My calculated precision:  0.766432822358857
-My calculated recall:  0.6964541955705491
-Scikit precision:  0.766432822358857
-Scikit recall 0.6964541955705489
-Scikit fscore 0.6895496427796125
-
-project name: vant
-My calculated precision:  0.7019767613378995
-My calculated recall:  0.7476835360715399
-Scikit precision:  0.7019767613378995
-Scikit recall 0.7476835360715398
-Scikit fscore 0.7131160800417922
-
-project name: influxdb
-My calculated precision:  0.4532137385906247
-My calculated recall:  0.5070139565836053
-Scikit precision:  0.4532137385906247
-Scikit recall 0.5070139565836053
-Scikit fscore 0.45657366055580323
-
-project name: webiny-js
-My calculated precision:  0.4779630598677426
-My calculated recall:  0.565623339550569
-Scikit precision:  0.4779630598677426
-Scikit recall 0.565623339550569
-Scikit fscore 0.48719762785106563
-
-project name: material
-My calculated precision:  0.6287433452305985
-My calculated recall:  0.4787820483529901
-Scikit precision:  0.6287433452305985
-Scikit recall 0.4787820483529901
-Scikit fscore 0.522175366266641
-
-project name: ionic-framework
-My calculated precision:  0.6235593284364901
-My calculated recall:  0.552537528526036
-Scikit precision:  0.6235593284364901
-Scikit recall 0.552537528526036
-Scikit fscore 0.5621740953561255
-
-project name: deno
-My calculated precision:  0.6397330790566206
-My calculated recall:  0.656460187801119
-Scikit precision:  0.6397330790566206
-Scikit recall 0.656460187801119
-Scikit fscore 0.6264375338237601
-
-project name: zeebe
-My calculated precision:  0.4202422804010771
-My calculated recall:  0.5121743388110654
-Scikit precision:  0.42024228040107703
-Scikit recall 0.5121743388110654
-Scikit fscore 0.4339495952751191
-
-project name: gatsby
-My calculated precision:  0.525258162785384
-My calculated recall:  0.6313459880118645
-Scikit precision:  0.525258162785384
-Scikit recall 0.6313459880118645
-Scikit fscore 0.542894800329692
-
-project name: renovate
-My calculated precision:  0.6197785960510394
-My calculated recall:  0.5813855030964916
-Scikit precision:  0.6197785960510392
-Scikit recall 0.5813855030964916
-Scikit fscore 0.5792452701261648
 
 project name: verdaccio
 My calculated precision:  0.5386739699354454
 My calculated recall:  0.5740675271419404
-Scikit precision:  0.5386739699354454
-Scikit recall 0.5740675271419404
-Scikit fscore 0.5109342219859068
+Scikit precision:  0.6074128454007807
+Scikit recall 0.5608878224355129
+Scikit fscore 0.5438230758392205
 
-project name: vite
-My calculated precision:  0.7236174505461909
-My calculated recall:  0.5964857749536389
-Scikit precision:  0.7236174505461909
-Scikit recall 0.5964857749536389
-Scikit fscore 0.6204877538700967
-
-project name: vue-cli
-My calculated precision:  0.6633870745739906
-My calculated recall:  0.5671996654450951
-Scikit precision:  0.6633870745739906
-Scikit recall 0.567199665445095
-Scikit fscore 0.5873629049026488
-
-project name: ng-bootstrap
-My calculated precision:  0.6024236364004911
-My calculated recall:  0.4853343729448493
-Scikit precision:  0.6024236364004911
-Scikit recall 0.4853343729448493
-Scikit fscore 0.49762561725843096
-
-project name: aks-engine
-My calculated precision:  0.6986772243738247
-My calculated recall:  0.5550021466169912
-Scikit precision:  0.6986772243738247
-Scikit recall 0.5550021466169912
-Scikit fscore 0.5769368371632858
+project name: loopback-next
+My calculated precision:  0.5553909222715421
+My calculated recall:  0.592712702478299
+Scikit precision:  0.7089082430291166
+Scikit recall 0.6247957516339869
+Scikit fscore 0.6480312240474941
 
 project name: vue-test-utils
 My calculated precision:  0.6101547908771907
 My calculated recall:  0.5896461217739012
-Scikit precision:  0.6101547908771907
-Scikit recall 0.5896461217739012
-Scikit fscore 0.5817948493038069
+Scikit precision:  0.7166341058885971
+Scikit recall 0.6852207293666027
+Scikit fscore 0.6920052973008077
+
+project name: pnpm
+My calculated precision:  0.7065625983265434
+My calculated recall:  0.596162632113841
+Scikit precision:  0.6775431076378303
+Scikit recall 0.6805066854327938
+Scikit fscore 0.6632502569362105
+
+project name: material-components-web
+My calculated precision:  0.6286265408642638
+My calculated recall:  0.6058641991166608
+Scikit precision:  0.6644717986956861
+Scikit recall 0.6544629349470499
+Scikit fscore 0.6477247809917376
+
+project name: Semantic-UI-React
+My calculated precision:  0.6338052877351741
+My calculated recall:  0.6399239655170573
+Scikit precision:  0.6852667530271087
+Scikit recall 0.6422947131608548
+Scikit fscore 0.6397408306589271
+
+project name: pgjdbc
+My calculated precision:  0.7202385293432788
+My calculated recall:  0.4557463030012556
+Scikit precision:  0.6975600148473539
+Scikit recall 0.5190713101160862
+Scikit fscore 0.5012547985287611
+
+project name: material
+My calculated precision:  0.6287433452305985
+My calculated recall:  0.4787820483529901
+Scikit precision:  0.6938099004984813
+Scikit recall 0.7034461910519951
+Scikit fscore 0.6863449922613468
+
+project name: deno
+My calculated precision:  0.6397330790566206
+My calculated recall:  0.656460187801119
+Scikit precision:  0.680595603164786
+Scikit recall 0.6699228791773779
+Scikit fscore 0.6601095554575414
+
+project name: ant-design
+My calculated precision:  0.6924007783286678
+My calculated recall:  0.6105450654386763
+Scikit precision:  0.7312828810506611
+Scikit recall 0.7247281514297221
+Scikit fscore 0.7217067700206468
+
+project name: RSSHub
+My calculated precision:  0.584215399121252
+My calculated recall:  0.6061814685832779
+Scikit precision:  0.7860460812834456
+Scikit recall 0.7537878787878788
+Scikit fscore 0.7642624581292277
+
+project name: goreleaser
+My calculated precision:  0.6616348295728954
+My calculated recall:  0.5611205602502761
+Scikit precision:  0.6874812035747264
+Scikit recall 0.6288873531444368
+Scikit fscore 0.6354037363058962
+
+project name: camunda-bpm-platform
+My calculated precision:  0.43829079537246446
+My calculated recall:  0.44477753675600235
+Scikit precision:  0.5913410770861233
+Scikit recall 0.5848550846037862
+Scikit fscore 0.5755467326157677
+
+project name: karma
+My calculated precision:  0.6978568263073335
+My calculated recall:  0.6442137938605144
+Scikit precision:  0.7175044660632555
+Scikit recall 0.7087696335078534
+Scikit fscore 0.7009121202451915
+
+project name: jina
+My calculated precision:  0.5909623877512226
+My calculated recall:  0.5051370400138306
+Scikit precision:  0.5881259667113494
+Scikit recall 0.5319469559975889
+Scikit fscore 0.5218898052215826
+
+project name: vuetify
+My calculated precision:  0.5893889751182173
+My calculated recall:  0.5567770401054987
+Scikit precision:  0.6527734787701467
+Scikit recall 0.572501104077727
+Scikit fscore 0.5414674023217437
+
+project name: superset
+My calculated precision:  0.6059843741367109
+My calculated recall:  0.5472664746939743
+Scikit precision:  0.6393298518794935
+Scikit recall 0.6531874405328258
+Scikit fscore 0.6408015554467554
+
+project name: reaction
+My calculated precision:  0.5476208925736371
+My calculated recall:  0.5265513782662047
+Scikit precision:  0.5645000679271107
+Scikit recall 0.4897426981919332
+Scikit fscore 0.4598828440273361
+
+project name: fxa
+My calculated precision:  0.4179065662087522
+My calculated recall:  0.5755426791645081
+Scikit precision:  0.6136191384097235
+Scikit recall 0.547258009348991
+Scikit fscore 0.5696381279319526
+
+project name: renovate
+My calculated precision:  0.6197785960510394
+My calculated recall:  0.5813855030964916
+Scikit precision:  0.6376259272272049
+Scikit recall 0.6405436668594563
+Scikit fscore 0.6182234182681727
+
+project name: vee-validate
+My calculated precision:  0.7146401164033179
+My calculated recall:  0.6870697949443524
+Scikit precision:  0.7536039901345598
+Scikit recall 0.7255384615384616
+Scikit fscore 0.7230611757890082
+
+project name: node-mongodb-native
+My calculated precision:  0.6687659456318142
+My calculated recall:  0.5829701075939541
+Scikit precision:  0.6680418305682366
+Scikit recall 0.5812101910828026
+Scikit fscore 0.5636899066355469
+
+project name: serenity-js
+My calculated precision:  0.5251675254124375
+My calculated recall:  0.4688740534598285
+Scikit precision:  0.5910362336872073
+Scikit recall 0.5823582358235824
+Scikit fscore 0.5676072740370254
+
+project name: vue-cli
+My calculated precision:  0.6633870745739906
+My calculated recall:  0.5671996654450951
+Scikit precision:  0.6564467410219448
+Scikit recall 0.6496212121212122
+Scikit fscore 0.6361334100956305
+
+project name: js-ipfs
+My calculated precision:  0.5700300305593725
+My calculated recall:  0.5827584966448959
+Scikit precision:  0.7211691286477586
+Scikit recall 0.6936159723933941
+Scikit fscore 0.7002152406054583
+
+project name: angular.js
+My calculated precision:  0.6062193948663628
+My calculated recall:  0.5033160650976619
+Scikit precision:  0.6879179113983542
+Scikit recall 0.5512127512127513
+Scikit fscore 0.5512723684909104
+
+project name: electron-builder
+My calculated precision:  0.6339131148417682
+My calculated recall:  0.5461610558770843
+Scikit precision:  0.6588261345315103
+Scikit recall 0.6248062015503876
+Scikit fscore 0.6307116616184131
+
+project name: components
+My calculated precision:  0.6138580346648755
+My calculated recall:  0.5482045755828987
+Scikit precision:  0.6999265998987781
+Scikit recall 0.6904652233993551
+Scikit fscore 0.6700943182345748
+
+project name: vite
+My calculated precision:  0.7236174505461909
+My calculated recall:  0.5964857749536389
+Scikit precision:  0.7255104099796789
+Scikit recall 0.7114861186717474
+Scikit fscore 0.6898553535961907
+
+project name: webiny-js
+My calculated precision:  0.4779630598677426
+My calculated recall:  0.565623339550569
+Scikit precision:  0.5973927884899134
+Scikit recall 0.5574618392834616
+Scikit fscore 0.5675613166585283
 
 project name: instantsearch.js
 My calculated precision:  0.5653595813573399
 My calculated recall:  0.5686080772149561
-Scikit precision:  0.5653595813573399
-Scikit recall 0.5686080772149561
-Scikit fscore 0.5525738713357505
+Scikit precision:  0.6515662578121868
+Scikit recall 0.6076374318086446
+Scikit fscore 0.6084112658683247
 
-project name: rxjs
-My calculated precision:  0.6574285583919653
-My calculated recall:  0.6138943211079889
-Scikit precision:  0.6574285583919653
-Scikit recall 0.6138943211079889
-Scikit fscore 0.6038650148452165
+project name: commitlint
+My calculated precision:  0.7669608539215839
+My calculated recall:  0.6712392900408869
+Scikit precision:  0.7500982343539928
+Scikit recall 0.7204678362573099
+Scikit fscore 0.7207473576807553
+
+project name: gatsby
+My calculated precision:  0.525258162785384
+My calculated recall:  0.6313459880118645
+Scikit precision:  0.7166584057920297
+Scikit recall 0.6430282702443699
+Scikit fscore 0.6608638293302422
+
+project name: axe-core
+My calculated precision:  0.6389058557220867
+My calculated recall:  0.6357416929452739
+Scikit precision:  0.6949727882769663
+Scikit recall 0.6993911719939118
+Scikit fscore 0.6941450466042743
+
+project name: vant
+My calculated precision:  0.7019767613378995
+My calculated recall:  0.7476835360715399
+Scikit precision:  0.7603040249968984
+Scikit recall 0.7369571155422016
+Scikit fscore 0.7406556605460941
+
+project name: ionic-framework
+My calculated precision:  0.6235593284364901
+My calculated recall:  0.552537528526036
+Scikit precision:  0.6461835806946399
+Scikit recall 0.617866323907455
+Scikit fscore 0.6094237100103511
+
+project name: stencil
+My calculated precision:  0.5314727653077305
+My calculated recall:  0.5731335985256614
+Scikit precision:  0.5898598537123927
+Scikit recall 0.5819856244384546
+Scikit fscore 0.570461712218506
+
+project name: aks-engine
+My calculated precision:  0.6986772243738247
+My calculated recall:  0.5550021466169912
+Scikit precision:  0.6332664476597752
+Scikit recall 0.596523330283623
+Scikit fscore 0.5879824192187978
+
+project name: angular-cli
+My calculated precision:  0.6374278576225013
+My calculated recall:  0.5719886217161827
+Scikit precision:  0.6602789793129668
+Scikit recall 0.620436546262314
+Scikit fscore 0.6170781144909239
+
+project name: G2
+My calculated precision:  0.5831426242990448
+My calculated recall:  0.6222067823470828
+Scikit precision:  0.6481326995521492
+Scikit recall 0.6234718826405868
+Scikit fscore 0.6154185016935767
+
+project name: chakra-ui
+My calculated precision:  0.4493183832660998
+My calculated recall:  0.5185436429046483
+Scikit precision:  0.5554618691936768
+Scikit recall 0.46080402010050253
+Scikit fscore 0.45610480956458704
+
+project name: taro
+My calculated precision:  0.514743298804151
+My calculated recall:  0.5278064689852703
+Scikit precision:  0.6163711912746059
+Scikit recall 0.6146788990825688
+Scikit fscore 0.6075425589688527
 
 project name: element3
 My calculated precision:  0.4857546655229303
 My calculated recall:  0.5242338055805693
-Scikit precision:  0.4857546655229303
-Scikit recall 0.5242338055805693
-Scikit fscore 0.43705039719605815
+Scikit precision:  0.5533500322831186
+Scikit recall 0.4666160849772382
+Scikit fscore 0.44976802549507666
+
+project name: stryker
+My calculated precision:  0.6173352456707061
+My calculated recall:  0.5931858217461933
+Scikit precision:  0.6240485268902275
+Scikit recall 0.6134751773049646
+Scikit fscore 0.6106839617620504
+
+project name: angular
+My calculated precision:  0.6039177230255034
+My calculated recall:  0.5157396115240876
+Scikit precision:  0.643800231838832
+Scikit recall 0.5939877528298385
+Scikit fscore 0.5744575455862843
+
+project name: influxdb
+My calculated precision:  0.4532137385906247
+My calculated recall:  0.5070139565836053
+Scikit precision:  0.600071755631188
+Scikit recall 0.5843062200956938
+Scikit fscore 0.5850525286915962
+
+project name: lerna
+My calculated precision:  0.6069482028045049
+My calculated recall:  0.6089342642278287
+Scikit precision:  0.6097519937568339
+Scikit recall 0.616551724137931
+Scikit fscore 0.5996540191319994
+
+project name: sequelize
+My calculated precision:  0.651754102503827
+My calculated recall:  0.6541824997493028
+Scikit precision:  0.7365805674776877
+Scikit recall 0.7139903514817367
+Scikit fscore 0.7195429247730152
+
+project name: zeebe
+My calculated precision:  0.4202422804010771
+My calculated recall:  0.5121743388110654
+Scikit precision:  0.6856980142333421
+Scikit recall 0.5442740926157698
+Scikit fscore 0.5732227389151741
+
+project name: rest.js
+My calculated precision:  0.5791097791097791
+My calculated recall:  0.5097182228362015
+Scikit precision:  0.6537119304306803
+Scikit recall 0.565625
+Scikit fscore 0.5759309195948537
 
 project name: super-productivity
 My calculated precision:  0.5695288033006961
 My calculated recall:  0.5675213377207494
-Scikit precision:  0.569528803300696
-Scikit recall 0.5675213377207494
-Scikit fscore 0.4897443181575331
+Scikit precision:  0.7091868845457177
+Scikit recall 0.4522008253094911
+Scikit fscore 0.4400000913544323
+
+project name: serverless
+My calculated precision:  0.766432822358857
+My calculated recall:  0.6964541955705491
+Scikit precision:  0.7450996884280638
+Scikit recall 0.6765779864371414
+Scikit fscore 0.6566712550470242
+
+project name: ng-bootstrap
+My calculated precision:  0.6024236364004911
+My calculated recall:  0.4853343729448493
+Scikit precision:  0.617261483363599
+Scikit recall 0.568295739348371
+Scikit fscore 0.5477517941405614
+
+project name: rxjs
+My calculated precision:  0.6574285583919653
+My calculated recall:  0.6138943211079889
+Scikit precision:  0.673232147103623
+Scikit recall 0.6001587721619476
+Scikit fscore 0.6025087895941451
 
 report for selected-projects full data
 My calculated precision:  0.6435856820374362
 My calculated recall:  0.5889132026463636
-Scikit precision:  0.6435856820374362
-Scikit recall 0.5889132026463636
-Scikit fscore 0.594669796797163
+Scikit precision:  0.6645039768924386
+Scikit recall 0.6409173204586602
+Scikit fscore 0.6366302100600281
 
 report for all-projects full data MICRO-AVERAGES
 My calculated precision:  0.6019392810394036
 My calculated recall:  0.5567294316619641
-Scikit precision:  0.6019392810394036
-Scikit recall 0.5567294316619641
-Scikit fscore 0.5693975632473263
+Scikit precision:  0.6064278333195059
+Scikit recall 0.6075509399977486
+Scikit fscore 0.5993153279393617
 
 report for all-projects full data MACRO-AVERAGES
-Macro-mean precision score: 0.6050194898287758
-Macro-mean recall score: 0.5747166385303363
-Macro-mean f-score: 0.5585925267970683
+Macro-mean precision score: 0.6645593659680814
+Macro-mean recall score: 0.6214964920404162
+Macro-mean f-score: 0.6160149649286624

@@ -49,7 +49,7 @@ def my_precision_recall(true,predicted,labels):
 
 def scikit_learn_precision_recall(true,predicted):
 
-    precision, recall, fscore, support = precision_recall_fscore_support(true,predicted,average="macro")
+    precision, recall, fscore, support = precision_recall_fscore_support(true,predicted,average="weighted")
     return (precision,recall, fscore)
 
 
