@@ -16,7 +16,7 @@
 
    - `split` option takes the ratio. This ratio will be used as a size of the test set for the `project` mode. By default the value of `split` is 0.25. This means that if one project has 800 commits then top(chronologically newest) 200 will be set aside for testing, and the rest 600 will be used for training.
 
-sample usage: `commitcanvas train project data/classification_reports/project/split_90_10.csv --split 0.10`
+sample usage: `commitcanvas train project data_experiments/raw_predictions/project/90_10.csv --split 0.10`
 
 ### create classification reports
 
@@ -55,7 +55,7 @@ Project-agnostic vs Project-specific 80/20
 
 ### Generate plots
 
-- `commitcanvas plots <path> <save> <title>`
+- `commitcanvas plots <report_path> <save> <title>`
 
 Input:
 

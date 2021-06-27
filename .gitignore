@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # model and data
-data/
+angular_data.ftr
 model/
 
 # Distribution / packaging

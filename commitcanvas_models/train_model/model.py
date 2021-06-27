@@ -5,10 +5,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from commitcanvas_models.train_model.tokenizers import stem_tokenizer
 from commitcanvas_models.train_model.tokenizers import dummy
-from commitcanvas_models.data_handling import helpers
-import joblib
 import os
-import time
 import multiprocessing
 import pandas as pd
 
@@ -76,11 +73,11 @@ def train_test_split(data,size):
   train,test =  data.tail(length-test_count), data.head(test_count)
   return (train,test)
 
-def save(pipeline,path):
+# def save_model(pipeline,path):
 
-  print("saving the model")
-  joblib.dump(pipeline, "{}/trained_model.pkl".format(path))
-  print("saving model complete")
+#   print("saving the model")
+#   joblib.dump(pipeline, "{}/trained_model.pkl".format(path))
+#   print("saving model complete")
 
 
 def save(test,predicted,path):
@@ -97,10 +94,10 @@ def save(test,predicted,path):
     true_pred.to_csv(path, mode='a', header=False, index=False)
 
 def select_training_data():
-    data = pd.read_csv("data/training_data/training_repos.csv",index_col=0)
+    data = pd.read_csv("data_experiments/projects_metadata/training_repos.csv",index_col=0)
 
     # use processed data
-    collected_data = pd.read_feather("data/training_data/angular_data.ftr")
+    collected_data = pd.read_feather("data/angular_data.ftr")
 
     # # take the selected repositories for training
     filtered_data = collected_data[collected_data['name'].isin(data.name.tolist())]

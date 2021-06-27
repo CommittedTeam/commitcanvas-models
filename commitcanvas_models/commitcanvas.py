@@ -17,7 +17,7 @@ def callback():
 @app.command()
 def select(labels: str = "fix,feat,chore,docs,refactor,test", min_label: int = 50, subset: bool = False, subset_size: float = 0.50):
     """Select and save repositories for training"""
-    data = pd.read_feather("data/training_data/angular_data.ftr")
+    data = pd.read_feather("data/angular_data.ftr")
     # select repositories that use the given labels and have at least given amount of commits per label
     filtered = helpers.filter_projects_by_label(data,labels,min_label)
     if subset:
@@ -29,7 +29,7 @@ def select(labels: str = "fix,feat,chore,docs,refactor,test", min_label: int = 5
     filtered = helpers.drop_by_language(selected_set,1).reset_index(drop=True)
 
     # save the repository names for training
-    filtered.to_csv("data/training_data/training_repos.csv")
+    filtered.to_csv("data_experiments/projects_metadata/training_repos.csv")
 
 
     print("\nSelected labels: ", labels)
