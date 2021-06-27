@@ -11,7 +11,9 @@ import pandas as pd
 
 
 def build_pipline():
-
+  '''
+  Define the steps for pipline
+  '''
   n_cpus = multiprocessing.cpu_count()
   
   # steps for processing the commit subject
@@ -40,6 +42,13 @@ def build_pipline():
   return pipeline
 
 def data_prep(data,labels):
+  '''
+  Pre-process the data for training
+
+  input: raw data
+
+  output: processed data
+  '''
   # TODO use loc instead
   labels = labels.split(",")
   data = data[data["commit_type"].isin(labels)]
@@ -53,6 +62,13 @@ def data_prep(data,labels):
   return data
 
 def feature_label_split(data):
+  '''
+  Select the features for training and split the data into features and labels
+
+  input: collected and processed data
+
+  output: data with selected features and data with respective labels
+  '''
   feature_columns = ['commit_subject',"num_files","test_files","test_files_ratio","unique_file_extensions","num_unique_file_extensions","num_lines_added","num_lines_removed","num_lines_total"]
   features = data[feature_columns]
   labels = data["commit_type"]
@@ -60,16 +76,31 @@ def feature_label_split(data):
   return (features,labels)
 
 def cross_val_split(data,project):
+  '''
+  Split the data for the project-agnostic experiment
 
+  input: data processed for training
+
+  output: test set that has commit data for one repository and training data for the rest of the repositories
+  '''
   train = data[data.name != project]
   test = data[data.name == project]
   return (train,test)
 
 
 def train_test_split(data,size):
+  '''
+  Split the data for project-specific experiment
+
+  input: data processed for training
+
+  output: test set that has chronologically most recent commits for the selected project and the training data
+  with the rest of the commits
+  '''
   length = len(data)
   test_count = int(round((length*size),0))
   # newest commits are at the top of the dataframe
+  # this split doesn't do the stratification to ensure the experiemnt is close to the real use scenario
   train,test =  data.tail(length-test_count), data.head(test_count)
   return (train,test)
 

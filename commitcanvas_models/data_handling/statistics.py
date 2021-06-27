@@ -11,17 +11,23 @@ from matplotlib.cbook import boxplot_stats
 import seaborn as sns
 
 def label_total_ratio(data):
-    # This function is not used yet
+    '''
+    See how often specific label is used
+    '''
     print("ratio of commits for each label in the entire commit data")
     ratios = data.commit_type.value_counts(normalize=True)
     print(ratios)
     return ratios
 
 def commitcanvas_classification_report(data,project):
+    '''
+    input: raw prediction output with predicted and respective true labels
 
+    output: Dictionary with project name, score name and respective value 
+    '''
     true = data.commit_type
     predicted = data.predicted
-
+    # set averaging method to weighted to account for the class imbalance
     precision, recall, fscore, support = precision_recall_fscore_support(true,predicted,average='weighted',zero_division=0)
 
     data = {
@@ -35,7 +41,11 @@ def commitcanvas_classification_report(data,project):
     return data
 
 def plot_confusion_matrix(data,save,title=None):
-  # this feature doens't work yet
+  '''
+  Plot and save confusion matrix
+
+  Please refer to the readme for expected inputs and outputs
+  '''
   true = data.commit_type
   predicted = data.predicted
 
@@ -49,6 +59,11 @@ def plot_confusion_matrix(data,save,title=None):
   plt.savefig("data_experiments/plots/matrix_{}".format(save))
       
 def boxplot(plot_data, save: str=None, title: str=None):
+    '''
+    Plot and save the box and whisker plot
+
+    Please refer to the readme for expected inputs and outputs
+    '''
     # make sure to fix the plot labels
     scores = ["precision","recall","fscore"]
     meanlineprops = dict(linestyle='--', color='black')
@@ -100,7 +115,13 @@ def boxplot(plot_data, save: str=None, title: str=None):
         plt.savefig("data_experiments/plots/boxplot_{}".format(save))
 
 def get_training_set_count(test_data):
+    '''
+    Count the number of commits per label
 
+    input: Test data
+
+    output: pandas dataframe
+    '''
     filtered_data = md.select_training_data()
 
     train_data = filtered_data[~filtered_data["commit_hash"].isin(test_data.commit_hash)]
