@@ -1,10 +1,12 @@
 # commitcanvas-models
 
-## running the experiment
+## Set up the invironment
 
 - clone the repository and navigate to `commitcanvas-model` branch. Then download the data release `data-0.1.0.tar.gz` from releases. Inside  `data-0.1.0.tar.gz` you will find `data` directory. Place it inside `commitcanvas_models` directory.
 - `poetry install`
 - `poetry shell`
+
+## Commands for experiments
 
 ### Train the model
 
@@ -76,30 +78,20 @@ sample usage:
 
 ## Data Overview
 
-## classification reports
+## Project metadata
 
-classification reports are csv files that have three columns: `Commit hash`, `true labels`, `predicted labels`. 
+Dataset of repositories that follow angular's conventional commit guidelines.
+The files also includes other meta data such as dominant programming language,criticality score etc.
 
-- cross_project
+[repositories for deployed model](data_experiemnts/projects_metadata/angualr_repos.csv)
+[repositories for experimentation](data_experiemnts/projects_metadata/training_repos.csv)
 
-    classification reports from cross project validation
+### Data stats
 
-- project
+The projects for deployed model have crticality score higher than 0.60. The projects have commits that follow conventional commit standard
+- total number of projects for deployed model: 304
+- total number of commits for training the deployed model: 515643
 
-    classification reports once model is trained and tested on one repository
-
-## project metadata
-
-dataset of repositories that follow angular conventional commit guidelines.
-csv file also includes other meta data such as dominant programming language,criticality score etc.
-
-## training data
-
-- angular_data.ftr
-
-This dataset has commit data for over 300 repositories that follow angular conventional guidelines
-
-- training_repos.ftr
-
-These repositories will be used in the experiments. Repositories included in this
-file is subset of repositories in `projects_metadata/angular_repos.csv`. These repositories were selected since they at least use following labels `fix,feat,chore,refactor,test,docs` and have at least 50 commits per label
+The projects for experimentation have crticality score higher than 0.60. And have at least 50 commits per label `chore`, `docs` `feat` `fix` `refactor` `test`
+- total number of projects for experimentation: 54
+- total number of commits used in experimentation: 213192
