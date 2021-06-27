@@ -6,7 +6,8 @@
 - `poetry install`
 - `poetry shell`
 
-### Train the model in project and cross-project modes
+### Train the model
+
 - `commitcanvas train <mode> <save_report> <split>`
 
    - `mode` can be either `project` or `cross_project`. If `project` is selected then each repository listed in `data/training_data/training_repo.csv` will be split into train and test sets for experimentation. If `cross_project` is selected then each repository listed in `data/training_data/training_repo.csv` will be cross-project validated.
@@ -17,43 +18,60 @@
 
 sample usage: `commitcanvas train project data/classification_reports/project/split_90_10.csv --split 0.10`
 
-### create classification report
+### create classification reports
 
-the generated file will include weighted precision, recall, fscore, size of test set, size of train set and the size of total set for each label in each project. This command will also generate the confusion matrices
+`commitcanvas report <data_path>`
 
-- commitcanvas report <data_path> <save_report> <save_plots>
+input: `data_path` path to the raw data that has true and predicted labels. The data is located in `data_experimnets/raw_predictions`
 
-  - `data_path` path to the raw data that has true and predicted labels
-  - `save_report` path to the file where the report should be saved
-  - `save_plots` create confusion matrices for each project and save them in the provided directory
-
-sample usage: `commitcanvas report classification_reports/cross_project/raw_prediction_output.csv --save-report classification_reports/cross_project/classification_report.csv --across-project-plots classification_reports/cross_project/matrix_all_projects.jpg --project-plots classification_reports/cross_project/plots`
-
-### getting the stats from classification reports
-
-Run man whitney u test
-
-- `commitcanvas mwu <path1> <path2>`
+output: the generated file will include weighted precision, recall, f-1, size of test set, size of train set and the size of total set for each label in each project. The file will be saved in `data_experimnets/classification_reports`. The file name will be same as the input file name.
 
 sample usage:
 
-project split 75/25 vs project split 80/20
-`commitcanvas mwu classification_reports/project/classification_report_75_25.csv classification_reports/project/classification_report_80_20.csv`
+Report for Project-specific with 60/40 train test split
 
-cross project vs 80/20
-`commitcanvas mwu classification_reports/cross_project/classification_report.csv classification_reports/project/classification_report_80_20.csv`
+`commitcanvas report 80_20.csv`
 
-### Plot box and whisker plot and get plot stats
+Report for project agnostic
 
-- `commitcanvas boxplot <path> <save>`
+`commitcanvas report project_agnostic.csv`
 
-if you would like to save the boxplot figures please provide the path
 
-get boxplot stats such as median, mean, whishi, whislo, values. And get projects from the data that carry those values in the classification report
+### Run statistical tests
+
+`commitcanvas mwu <path1> <path2>`
+
+Input: Paths to the classification report files.
+
+Output: Mann-Whitney U Test and Vargha and Delaney effect size for precision, recall and f-1 scores
 
 sample usage:
 
-`commitcanvas boxplot classification_reports/project/classification_report_60_40.csv`
+Project-specific split 75/25 vs Project-specific split 80/20
+`commitcanvas mwu 75_25.csv 80_20.csv`
+
+Project-agnostic vs Project-specific 80/20
+`commitcanvas mwu project_agnostic.csv 80_20.csv`
+
+### Generate plots
+
+- `commitcanvas plots <path> <save> <title>`
+
+Input:
+
+  - `path` path to the file with specific split configuration
+  - `save` name of the file where the plot will be saved
+  - `title` title of the plot
+
+Output:
+
+confusion matrix and the boxplot will be saved in `data_experiments/plots`
+
+boxplot stats such as median, mean, whishi, whislo. And get projects names near those values
+
+sample usage:
+
+`commitcanvas plots 80_20.csv project_specific_80_20.pdf --title "Project-Specific (80/20)"`
 
 
 ## Data Overview

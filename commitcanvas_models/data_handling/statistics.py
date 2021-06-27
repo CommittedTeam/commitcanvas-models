@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import ConfusionMatrixDisplay
 from commitcanvas_models.train_model import model as md
 from commitcanvas_models.data_handling import helpers
+import matplotlib.pyplot as plt
+from matplotlib.cbook import boxplot_stats
+import seaborn as sns
 
 def label_total_ratio(data):
     # This function is not used yet
@@ -31,7 +34,7 @@ def commitcanvas_classification_report(data,project):
 
     return data
 
-def plot_confusion_matrix(data,save_plots,name=None,title=None):
+def plot_confusion_matrix(data,save,title=None):
   # this feature doens't work yet
   true = data.commit_type
   predicted = data.predicted
@@ -42,13 +45,60 @@ def plot_confusion_matrix(data,save_plots,name=None,title=None):
   disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=labels)
   disp.plot(cmap='Greys',values_format="d")
 
-  if name:
-      plt.savefig("{}/{}.jpg".format(save_plots,name))
-  else:
-      plt.title(title,fontsize=14)
-      plt.savefig(save_plots)
+  plt.title(title,fontsize=14)
+  plt.savefig("data_experiments/plots/matrix_{}".format(save))
       
-      
+def boxplot(plot_data, save: str=None, title: str=None):
+    # make sure to fix the plot labels
+    scores = ["precision","recall","fscore"]
+    meanlineprops = dict(linestyle='--', color='black')
+    # hide the median line
+    medianlineprops = dict(linewidth=0)
+    box_plot = sns.boxplot(data=plot_data[scores],color='grey',meanline=True, showmeans=True, meanprops=meanlineprops,medianprops=medianlineprops)
+    plt.ylim(0.3, 0.9)
+    plt.yticks(fontsize=14)
+    plt.xticks([0,1,2], ["Precision","Recall","F-Score"], fontsize=14)
+    
+
+    for score in scores:
+        stats = boxplot_stats(plot_data[score])
+        mean = plot_data[round(plot_data[score],2) == round(stats[0]["mean"],2)]
+        whishi = plot_data[plot_data[score] == stats[0]["whishi"]] 
+        whislo = plot_data[plot_data[score] == stats[0]["whislo"]] 
+        fliers =  plot_data[plot_data[score].isin(stats[0]["fliers"])]
+
+        print("\nOverall boxplot stats for {}".format(score))
+        print(stats)
+        print("\nProjects close to value of mean")
+        print(mean)
+        print("\nProject at the value of whishi")
+        print(whishi)
+        print("\nProject at the value of whislo")
+        print(whislo)
+        if stats[0]["fliers"].any():
+            print("\nFar outlier projects")
+            print(fliers)
+        print("\n")
+
+        # style the boxplots
+        x_pos = scores.index(score)
+        mean_val = round(stats[0]['mean'],2)
+        plt.text(
+        x_pos, 
+        mean_val, 
+        f'{mean_val}', 
+        ha='center',
+        va='center',
+        fontweight='bold', 
+        size=10,
+        color='black',
+        bbox=dict(facecolor='#d3d3d3'))
+
+    plt.title(title,fontsize=16)
+    print(save)
+    if save:
+        plt.savefig("data_experiments/plots/boxplot_{}".format(save))
+
 def get_training_set_count(test_data):
 
     filtered_data = md.select_training_data()

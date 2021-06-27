@@ -10,7 +10,7 @@ import joblib
 import os
 import time
 import multiprocessing
-
+import pandas as pd
 
 
 def build_pipline():
@@ -111,14 +111,13 @@ def select_training_data():
 
     return filtered_data
 
-import pandas as pd
+
 def report(data,mode,split,path):
   
   projects = data.name.unique()
 
   for repo in projects:
-      start = time.time()
-      print(repo)
+
       if mode == 'cross_project':
 
         # Train test split for cross project validation
@@ -127,12 +126,12 @@ def report(data,mode,split,path):
         test_features,test_labels = feature_label_split(test)
 
       elif mode == 'project':
+
         project_data = data[data.name == repo]
         # Train test split for one project
         train,test = train_test_split(project_data,split)
         train_features,train_labels = feature_label_split(train)
         test_features,test_labels = feature_label_split(test)
-
       
       pipeline = build_pipline()
       pipeline.fit(train_features,train_labels)
