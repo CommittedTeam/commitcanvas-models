@@ -1,10 +1,12 @@
 # commitcanvas-models
 
-## Set up the invironment
+## Set up the environment
 
-- clone the repository and navigate to `commitcanvas-model` branch. Then download the data release `data-0.1.0.tar.gz` from releases. Inside  `data-0.1.0.tar.gz` you will find `data` directory. Place it inside `commitcanvas_models` directory.
-- `poetry install`
-- `poetry shell`
+- clone the repository.
+- Download the data `angular_data.ftr` from releases. Place the file inside `comitcanvas_models/data`
+- Install [poetry](https://python-poetry.org/) or ensure that you have all the dependencies listed in `pyproject.toml` installed
+- Install the dependencies `poetry install`
+- Enter poetry shell `poetry shell`
 
 ## Commands for experiments
 
@@ -20,7 +22,7 @@
 
 sample usage: `commitcanvas train project data_experiments/raw_predictions/project/90_10.csv --split 0.10`
 
-### create classification reports
+### Create classification reports
 
 `commitcanvas report <data_path>`
 
@@ -78,12 +80,13 @@ sample usage:
 
 ## Data Overview
 
-## Project metadata
+### Project metadata
 
-Dataset of repositories that follow angular's conventional commit guidelines.
+List of repositories that follow angular's conventional commit guidelines.
 The files also includes other meta data such as dominant programming language,criticality score etc.
 
 [repositories for deployed model](data_experiemnts/projects_metadata/angualr_repos.csv)
+
 [repositories for experimentation](data_experiemnts/projects_metadata/training_repos.csv)
 
 ### Data stats
