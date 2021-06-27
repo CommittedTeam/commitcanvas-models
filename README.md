@@ -12,7 +12,7 @@
 
 ### Train the model
 
-- `commitcanvas train <mode> <save_report> <split>`
+- `commitcanvas experiment <mode> <save_report> <split>`
 
    - `mode` can be either `project` or `cross_project`. If `project` is selected then each repository listed in `data/training_data/training_repo.csv` will be split into train and test sets for experimentation. If `cross_project` is selected then each repository listed in `data/training_data/training_repo.csv` will be cross-project validated.
 
@@ -20,7 +20,7 @@
 
    - `split` option takes the ratio. This ratio will be used as a size of the test set for the `project` mode. By default the value of `split` is 0.25. This means that if one project has 800 commits then top(chronologically newest) 200 will be set aside for testing, and the rest 600 will be used for training.
 
-sample usage: `commitcanvas train project data_experiments/raw_predictions/project/90_10.csv --split 0.10`
+sample usage: `commitcanvas experiment project data_experiments/raw_predictions/project/90_10.csv --split 0.10`
 
 ### Create classification reports
 

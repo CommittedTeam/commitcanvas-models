@@ -42,7 +42,24 @@ def select(labels: str = "fix,feat,chore,docs,refactor,test", min_label: int = 5
     print(filtered.language.value_counts())
 
 @app.command()
-def train(mode: str,  save_report: str, split: float = 0.25):
+def train(data:str, save:str, types:str = "chore,docs,feat,fix,refactor,test"):
+    '''
+    Train the pipeline for deployment
+    '''
+    types = types.strip().split(",")
+    data = md.data_prep(data, types)
+
+    train,test = md.train_test_split(data,0.20)
+    train_features,train_labels = md.feature_label_split(train)
+    test_features,test_labels = md.feature_label_split(test)
+
+    pipeline = md.build_pipline()
+    pipeline = pipeline.fit(train_features, train_labels)
+
+    return pipeline
+
+@app.command()
+def experiment(mode: str,  save_report: str, split: float = 0.25):
     
     valid_modes = ['project','cross_project']
     if mode not in valid_modes:

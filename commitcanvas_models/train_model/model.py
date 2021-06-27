@@ -52,6 +52,7 @@ def data_prep(data,labels):
   # TODO use loc instead
   labels = labels.split(",")
   data = data[data["commit_type"].isin(labels)]
+  print(data)
   # drop commits made by the bots
   data = data[data["isbot"] != True]
   # drop duplicate commits if any
@@ -89,7 +90,7 @@ def cross_val_split(data,project):
 
 
 def train_test_split(data,size):
-  '''
+  '''    print
   Split the data for project-specific experiment
 
   input: data processed for training
