@@ -52,7 +52,6 @@ def data_prep(data,labels):
   # TODO use loc instead
   labels = labels.split(",")
   data = data[data["commit_type"].isin(labels)]
-  print(data)
   # drop commits made by the bots
   data = data[data["isbot"] != True]
   # drop duplicate commits if any
