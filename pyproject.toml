@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "commitcanvas_models"
+version = "0.1.0"
+description = ""
+authors = ["bagashvilit <bagashvilit@allegheny.edu>"]
+
+[tool.poetry.dependencies]
+python = ">=3.7.1,<4.0"
+reporover = { git = "https://github.com/CommittedTeam/RepoRover", branch = "repo-mining" }
+sklearn = "^0.0"
+matplotlib = "^3.4.2"
+seaborn = "^0.11.1"
+pingouin = "^0.3.12"
+nltk = "^3.6.2"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.scripts]
+commitcanvas = "commitcanvas_models.commitcanvas:app"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -6,11 +6,15 @@ __pycache__/
 # C extensions
 *.so
 
+# model and data
+angular_data.ftr
+model/
+
 # Distribution / packaging
 .Python
 build/
-develop-eggs/
 dist/
+develop-eggs/
 downloads/
 eggs/
 .eggs/
