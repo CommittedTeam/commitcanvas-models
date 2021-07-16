@@ -16,7 +16,7 @@ def callback():
     """
 
 @app.command()
-def select(labels: str = "fix,feat,chore,docs,refactor,test", min_label: int = 50, subset: bool = False, subset_size: float = 0.50):
+def select(labels: str = "fix,feat,chore,docs,refactor,test", min_label: int = 50, subset: bool = False, subset_size: float = 0.50, save: str=None):
     """Select and save repositories for training"""
     data = pd.read_feather("data/angular_data.ftr")
     # select repositories that use the given labels and have at least given amount of commits per label
@@ -30,7 +30,8 @@ def select(labels: str = "fix,feat,chore,docs,refactor,test", min_label: int = 5
     filtered = helpers.drop_by_language(selected_set,1).reset_index(drop=True)
 
     # save the repository names for training
-    filtered.to_csv("data_experiments/projects_metadata/training_repos.csv")
+    # "data_experiments/projects_metadata/training_repos.csv"
+    filtered.to_csv(save)
 
 
     print("\nSelected labels: ", labels)
@@ -43,7 +44,7 @@ def select(labels: str = "fix,feat,chore,docs,refactor,test", min_label: int = 5
     print(filtered.language.value_counts())
 
 @app.command()
-def train(data:str, save:str, types:str = "chore,docs,feat,fix,refactor,test"):
+def train(data:str, save:str=None, types:str = "chore,docs,feat,fix,refactor,test"):
     '''
     Train the pipeline for deployment
     '''
@@ -57,7 +58,7 @@ def train(data:str, save:str, types:str = "chore,docs,feat,fix,refactor,test"):
     pipeline = pipeline.fit(train_features, train_labels)
 
     print("saving the model")
-    joblib.dump(pipeline, "{}/trained_model.pkl".format(save))
+    joblib.dump(pipeline, "{}".format(save))
     print("saving model complete")
 
     return pipeline
