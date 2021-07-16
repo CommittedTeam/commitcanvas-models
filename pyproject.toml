@@ -6,7 +6,7 @@ authors = ["bagashvilit <bagashvilit@allegheny.edu>"]
 
 [tool.poetry.dependencies]
 python = ">=3.7.1,<4.0"
-reporover = { git = "https://github.com/CommittedTeam/RepoRover"}
+reporover = { git = "https://github.com/CommittedTeam/RepoRover", branch = "main" }
 sklearn = "^0.0"
 matplotlib = "^3.4.2"
 seaborn = "^0.11.1"
